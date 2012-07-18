@@ -1,1 +1,1 @@
-sudo rsync -zr --progress  /media/Byte /media/Doppleganger
+sudo rsync -ar --progress  /media/Byte /media/Doppleganger
