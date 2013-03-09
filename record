@@ -1,3 +1,3 @@
 #! /bin/sh
 #
-ffmpeg -f x11grab -r 30 -s 1920x1080 -i :0.0 -vcodec libx264  -threads 0 video.mk
+ffmpeg -f x11grab -r 30 -s 1920x1080 -i :0.0 -vcodec libx264  -threads 0 video.mkv
