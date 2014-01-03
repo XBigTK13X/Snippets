@@ -3,5 +3,10 @@
 #  https://ffmpeg.org/trac/ffmpeg/wiki/UbuntuCompilationGuide
 #  
 #  For Windows: http://ffmpeg.zeranoe.com/builds/
+#  Note that Windows build sometimes doesn't see the display
+#  Easier to record on Linux and apply a demultiplexer as needed
 #
 ffmpeg -f x11grab -r 30 -s 1920x1080 -i :0.0 -vcodec libx264  -threads 0 video.mov
+
+#Demux
+ffmpeg -y -i source.mov -c copy demuxed/dest.mp4
