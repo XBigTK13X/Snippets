@@ -1,6 +1,7 @@
 from subprocess import call
 from sys import argv
 from sys import exit
+from os.path import dirname
 
 u=open('user').read().strip()
 
@@ -15,13 +16,17 @@ def backup(user,local,remote):
     call(["sudo","-H","rsync","-arz",local,"bup@archer:/bup/"+user+"/"+remote])
 
 def restore(user,local,remote):
-    call(["sudo","-H","rsync","-arz","bup@archer:/bup/"+user+"/"+remote,local])
+    s = "bup@archer:/bup/"+user+"/"+remote+"/"
+    d = dirname(local)
+    call(["sudo","-H","rsync","-arz",s,d])
 
 def cleanremote(user,local,remote):
     call(["sudo","-H","rsync","-arz","--del",local,"bup@archer:/bup/"+user+"/"+remote])
 
 def cleanlocal(user,local,remote):
-    call(["sudo","-H","rsync","-arz","--del","bup@archer:/bup/"+user+"/"+remote,local])
+    s = "bup@archer:/bup/"+user+"/"+remote+"/"
+    d = dirname(local)
+    call(["sudo","-H","rsync","-arz","--del",s,d])
 
 def usage():    
     print "Usage: python backup.py <mode>"
@@ -38,8 +43,8 @@ if len(argv) == 1:
 mode = argv[1]
 failed = False
 for sync in syncs:
-    l = sync
-    r = syncs[sync]
+    l = sync.strip()
+    r = syncs[sync].strip()
     if mode == "b":
         backup(u,l,r)
     elif mode == "r":
