@@ -17,8 +17,10 @@ Setup is as follows:
 4. ssh-copy-id -i ~/.ssh/id_rsa.pub bup@archer
 5. Enter password for bup to confirm the copy
 6. Copy the files backup.py, syncs, and user to '''/usr/local/bin/bup'''
+7. Take ownership of these files for the user that will be doing the backups.
 7. Edit syncs to contain any directories you want backed up '''/client/path:::/server-backup-name'''
 8. Edit user to be your user's id
+9. Create a directory as bup on archer under /bup with the user's name
 9. Edit the root user's crontab '''sudo crontab -e'''
 10. Add this line '''@hourly cd /usr/local/bin/bup; python backup.py b'''
 
