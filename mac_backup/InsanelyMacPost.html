@@ -1,0 +1,4331 @@
+<!DOCTYPE html>
+<!-- saved from url=(0106)http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/ -->
+<html lang="en" xmlns:fb="http://www.facebook.com/2008/fbml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+		<meta charset="UTF-8">
+		<title>[Guide] 10.6 (Snow Leopard) Time Machine backup to network share - OSx86 10.6 (Snow Leopard) - InsanelyMac Forum</title>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<link rel="shortcut icon" href="http://www.insanelymac.com/forum/favicon.ico">
+		<link rel="image_src" href="http://www.insanelymac.com/forum/public/style_images/insanely_mac/meta_image.png">
+		<script async="" src="http://track.netshelter.net/async/js/sites/insanelymac.com-async.js"></script><script type="text/javascript" async="" src="./InsanelyMacPost_files/plusone.js" gapi_processed="true"></script><script id="twitter-wjs" async="" src="./InsanelyMacPost_files/widgets.js"></script><script type="text/javascript" async="" src="./InsanelyMacPost_files/insanelymac.min.js"></script><script src="./InsanelyMacPost_files/cb=gapi.loaded_1" async=""></script><script src="./InsanelyMacPost_files/cb=gapi.loaded_0" async=""></script><script id="facebook-jssdk" src="./InsanelyMacPost_files/all.js"></script><script type="text/javascript" async="" src="./InsanelyMacPost_files/ga.js"></script><script async="" type="text/javascript" src="./InsanelyMacPost_files/gpt.js"></script><script type="text/javascript">
+		//<![CDATA[
+			jsDebug			= 0; /* Must come before JS includes */
+			DISABLE_AJAX	= parseInt(0); /* Disables ajax requests where text is sent to the DB; helpful for charset issues */
+			inACP			= false;
+			var isRTL		= false;
+			var rtlIe		= '';
+			var rtlFull		= '';
+		//]]>
+		</script>
+		
+	
+				
+	
+
+				
+	
+
+				
+	
+
+				
+	
+
+				
+	
+	
+		<link rel="stylesheet" type="text/css" media="screen,print" href="./InsanelyMacPost_files/index.php">
+	
+
+<!--[if lte IE 7]>
+	<link rel="stylesheet" type="text/css" title='Main' media="screen" href="http://www.insanelymac.com/forum/public/style_css/css_8/ipb_ie.css" />
+<![endif]-->
+<!--[if lte IE 8]>
+	<style type='text/css'>
+		.ipb_table { table-layout: fixed; }
+		.ipsLayout_content { width: 99.5%; }
+	</style>
+<![endif]-->
+
+	<style type="text/css">
+		img.bbc_img { max-width: 100% !important; }
+	</style>
+
+		<meta property="og:title" content="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share - OSx86 10.6 (Snow Leopard)">
+		<meta property="og:site_name" content="InsanelyMac Forum">
+		<meta property="og:type" content="article">
+		
+	
+		
+		
+			<meta property="og:updated_time" content="1252874897">
+		
+		
+		
+		
+	
+
+		
+		
+			<meta name="keywords" content="[Guide],106,Snow,Leopard,Time,Machine,backup,network,share,The,upgrade,breaks,105x,time,machine,backups,configured,AFP,shares,non-mac,based,volumes,per">
+		
+		
+		
+		
+	
+
+		
+		
+			<meta name="description" content="Page 1 of 9 - [Guide] 10.6 (Snow Leopard) Time Machine backup to network share - posted in OSx86 10.6 (Snow Leopard): The upgrade to Snow Leopard breaks 10.5.x time machine backups configured with AFP shares on non-mac based network volumes as per these instructions, for example. After some trial and error, I was able to find out that the secrect lies with a hidden property list file that specifies the hardware UUID for the machine to be backed up.    The following are some simple instruct...">
+		
+		
+		
+			<meta property="og:description" content="Page 1 of 9 - [Guide] 10.6 (Snow Leopard) Time Machine backup to network share - posted in OSx86 10.6 (Snow Leopard): The upgrade to Snow Leopard breaks 10.5.x time machine backups configured with AFP shares on non-mac based network volumes as per these instructions, for example. After some trial and error, I was able to find out that the secrect lies with a hidden property list file that specifies the hardware UUID for the machine to be backed up.    The following are some simple instruct...">
+		
+		
+	
+
+		
+		
+			<meta name="identifier-url" content="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/">
+		
+		
+			<meta property="og:url" content="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/">
+		
+		
+		
+	
+
+<meta property="og:image" content="http://www.insanelymac.com/forum/public/style_images/insanely_mac/meta_image.png">
+		
+		
+		<script type="text/javascript" src="./InsanelyMacPost_files/lazyload.min.js"></script><style type="text/css"></style><script type="text/javascript" src="./InsanelyMacPost_files/prototype.js"></script>
+		<script type="text/javascript" src="./InsanelyMacPost_files/scriptaculous.js"></script><script type="text/javascript" src="./InsanelyMacPost_files/effects.js"></script><script type="text/javascript" src="./InsanelyMacPost_files/dragdrop.js"></script><script type="text/javascript" src="./InsanelyMacPost_files/builder.js"></script>
+	<script type="text/javascript" src="./InsanelyMacPost_files/index(1).php" charset="UTF-8"></script>
+
+
+	
+		
+			
+			
+			
+			
+				<link id="ipsCanonical" rel="canonical" href="./InsanelyMacPost_files/InsanelyMacPost.html">
+			
+		
+
+			
+			
+			
+			
+				<link rel="stylesheet" type="text/css" title="Main" media="print" href="./InsanelyMacPost_files/ipb_print.css">
+			
+		
+
+			
+			
+			
+			
+				<link rel="next" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/page-2">
+			
+		
+
+			
+			
+			
+			
+				<link rel="last" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/page-9">
+			
+		
+
+			
+			
+			
+			
+				<link rel="up" href="http://www.insanelymac.com/forum/forum/178-osx86-106-snow-leopard/">
+			
+		
+
+			
+			
+			
+			
+				<link rel="author" href="http://www.insanelymac.com/forum/user/304835-sunkid/">
+			
+		
+	
+
+		
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="InsanelyMac Latest Forum Threads" href="http://www.insanelymac.com/forum/rss/forums/1-insanelymac-latest-forum-threads/">
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="InsanelyMac News" href="http://www.insanelymac.com/forum/rss/forums/2-insanelymac-news/">
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="Last 10 Submissions RSS Feed" href="http://www.insanelymac.com/forum/rss/downloads/">
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="OSx86 FAQ: Hardware" href="http://www.insanelymac.com/forum/rss/ccs/7c25-hardware/">
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="OSx86 FAQ: Installation" href="http://www.insanelymac.com/forum/rss/ccs/7c26-installation/">
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="OSx86 FAQ: OS X General" href="http://www.insanelymac.com/forum/rss/ccs/7c30-os-x-general/">
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="OSx86 FAQ: Bootloaders" href="http://www.insanelymac.com/forum/rss/ccs/7c27-bootloaders/">
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="OSx86 FAQ: Kexts" href="http://www.insanelymac.com/forum/rss/ccs/7c28-kexts/">
+			
+			
+			
+		
+
+			
+			
+				<link rel="alternate" type="application/rss+xml" title="OSx86 FAQ: DSDT" href="http://www.insanelymac.com/forum/rss/ccs/7c29-dsdt/">
+			
+			
+			
+		
+	
+
+	
+
+
+
+<script type="text/javascript">
+	//<![CDATA[
+		/* ---- URLs ---- */
+		ipb.vars['base_url'] 			= 'http://www.insanelymac.com/forum/index.php?s=214925a130c4a55d0c9a64c6c68af56d&';
+		ipb.vars['board_url']			= 'http://www.insanelymac.com/forum';
+		ipb.vars['img_url'] 			= "http://www.insanelymac.com/forum/public/style_images/insanely_mac";
+		ipb.vars['loading_img'] 		= 'http://www.insanelymac.com/forum/public/style_images/insanely_mac/loading.gif';
+		ipb.vars['active_app']			= 'forums';
+		ipb.vars['upload_url']			= 'http://www.insanelymac.com/forum/uploads';
+		/* ---- Member ---- */
+		ipb.vars['member_id']			= parseInt( 0 );
+		ipb.vars['is_supmod']			= parseInt( 0 );
+		ipb.vars['is_admin']			= parseInt( 0 );
+		ipb.vars['secure_hash'] 		= '880ea6a14ea49e853634fbdc5015a024';
+		ipb.vars['session_id']			= '214925a130c4a55d0c9a64c6c68af56d';
+		ipb.vars['twitter_id']			= 0;
+		ipb.vars['fb_uid']				= 0;
+		ipb.vars['auto_dst']			= parseInt( 0 );
+		ipb.vars['dst_in_use']			= parseInt(  );
+		ipb.vars['is_touch']			= false;
+		ipb.vars['member_group']		= {"g_mem_info":"1"}
+		/* ---- cookies ----- */
+		ipb.vars['cookie_id'] 			= '';
+		ipb.vars['cookie_domain'] 		= '.insanelymac.com';
+		ipb.vars['cookie_path']			= '/';
+		/* ---- Rate imgs ---- */
+		ipb.vars['rate_img_on']			= 'http://www.insanelymac.com/forum/public/style_images/insanely_mac/star.png';
+		ipb.vars['rate_img_off']		= 'http://www.insanelymac.com/forum/public/style_images/insanely_mac/star_off.png';
+		ipb.vars['rate_img_rated']		= 'http://www.insanelymac.com/forum/public/style_images/insanely_mac/star_rated.png';
+		/* ---- Uploads ---- */
+		ipb.vars['swfupload_swf']		= 'http://www.insanelymac.com/forum/public/js/3rd_party/swfupload/swfupload.swf';
+		ipb.vars['swfupload_enabled']	= true;
+		ipb.vars['use_swf_upload']		= ( '' == 'flash' ) ? true : false;
+		ipb.vars['swfupload_debug']		= false;
+		/* ---- other ---- */
+		ipb.vars['highlight_color']     = "#ade57a";
+		ipb.vars['charset']				= "UTF-8";
+		ipb.vars['time_offset']			= "0";
+		ipb.vars['hour_format']			= "12";
+		ipb.vars['seo_enabled']			= 1;
+		
+		ipb.vars['seo_params']			= {"start":"-","end":"\/","varBlock":"?","varPage":"page-","varSep":"&","varJoin":"="};
+		
+		/* Templates/Language */
+		ipb.templates['inlineMsg']		= "";
+		ipb.templates['ajax_loading'] 	= "<div id='ajax_loading'><img src='http://www.insanelymac.com/forum/public/style_images/insanely_mac/ajax_loading.gif' alt='" + ipb.lang['loading'] + "' /></div>";
+		ipb.templates['close_popup']	= "<img src='http://www.insanelymac.com/forum/public/style_images/insanely_mac/close_popup.png' alt='x' />";
+		ipb.templates['rss_shell']		= new Template("<ul id='rss_menu' class='ipbmenu_content'>#{items}</ul>");
+		ipb.templates['rss_item']		= new Template("<li><a href='#{url}' title='#{title}'>#{title}</a></li>");
+		
+		ipb.templates['autocomplete_wrap'] = new Template("<ul id='#{id}' class='ipb_autocomplete' style='width: 250px;'></ul>");
+		ipb.templates['autocomplete_item'] = new Template("<li id='#{id}' data-url='#{url}'><img src='#{img}' alt='' class='ipsUserPhoto ipsUserPhoto_mini' />&nbsp;&nbsp;#{itemvalue}</li>");
+		ipb.templates['page_jump']		= new Template("<div id='#{id}_wrap' class='ipbmenu_content'><h3 class='bar'>Jump to page</h3><p class='ipsPad'><input type='text' class='input_text' id='#{id}_input' size='8' /> <input type='submit' value='Go' class='input_submit add_folder' id='#{id}_submit' /></p></div>");
+		ipb.templates['global_notify'] 	= new Template("<div class='popupWrapper'><div class='popupInner'><div class='ipsPad'>#{message} #{close}</div></div></div>");
+		
+		
+		ipb.templates['header_menu'] 	= new Template("<div id='#{id}' class='ipsHeaderMenu boxShadow'></div>");
+		
+		Loader.boot();
+	//]]>
+	</script>
+		<script type="text/javascript">
+			var googletag = googletag || {};
+			googletag.cmd = googletag.cmd || [];
+			(function() {
+				var gads = document.createElement('script');
+				gads.async = true;
+				gads.type = 'text/javascript';
+				var useSSL = 'https:' == document.location.protocol;
+				gads.src = (useSSL ? 'https:' : 'http:') + '//www.googletagservices.com/tag/js/gpt.js';
+				var node = document.getElementsByTagName('script')[0];
+				node.parentNode.insertBefore(gads, node);
+			})();
+			googletag.cmd.push(function() {
+				googletag.defineSlot('/1015160/InsanelyMac_Forum_Top_728x90', [728, 90], 'div-gpt-ad-1358550324989-0').addService(googletag.pubads());
+			
+				googletag.defineSlot('/1015160/InsanelyMac_Forum_InPost_300x250', [300, 250], 'div-gpt-ad-1358550279041-0').addService(googletag.pubads());
+			
+				googletag.defineSlot('/1015160/InsanelyMac_Forum_Low_728x90', [728, 90], 'div-gpt-ad-1358550302649-0').addService(googletag.pubads());
+				googletag.pubads().collapseEmptyDivs();
+				googletag.pubads().enableSingleRequest();
+				googletag.enableServices();
+			});
+		</script>
+	<script type="text/javascript">
+	var _gaq = _gaq || [];
+	_gaq.push(['_setAccount', 'UA-13025395-3']);
+	_gaq.push(['_trackPageview']);
+
+	(function() {
+		var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+		ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+		var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	})();
+</script><script async="" type="text/javascript" src="http://partner.googleadservices.com/gpt/pubads_impl_37.js"></script><style type="text/css">.fb_hidden{position:absolute;top:-10000px;z-index:10001}.fb_invisible{display:none}.fb_reset{background:none;border:0;border-spacing:0;color:#000;cursor:auto;direction:ltr;font-family:"lucida grande", tahoma, verdana, arial, sans-serif;font-size:11px;font-style:normal;font-variant:normal;font-weight:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal}.fb_reset>div{overflow:hidden}.fb_link img{border:none}
+.fb_dialog{background:rgba(82, 82, 82, .7);position:absolute;top:-10000px;z-index:10001}.fb_reset .fb_dialog_legacy{overflow:visible}.fb_dialog_advanced{padding:10px;-moz-border-radius:8px;-webkit-border-radius:8px;border-radius:8px}.fb_dialog_content{background:#fff;color:#333}.fb_dialog_close_icon{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 0 transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif);cursor:pointer;display:block;height:15px;position:absolute;right:18px;top:17px;width:15px}.fb_dialog_mobile .fb_dialog_close_icon{top:5px;left:5px;right:auto}.fb_dialog_padding{background-color:transparent;position:absolute;width:1px;z-index:-1}.fb_dialog_close_icon:hover{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -15px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_close_icon:active{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yq/r/IE9JII6Z1Ys.png) no-repeat scroll 0 -30px transparent;_background-image:url(http://static.ak.fbcdn.net/rsrc.php/v2/yL/r/s816eWC-2sl.gif)}.fb_dialog_loader{background-color:#f2f2f2;border:1px solid #606060;font-size:24px;padding:20px}.fb_dialog_top_left,.fb_dialog_top_right,.fb_dialog_bottom_left,.fb_dialog_bottom_right{height:10px;width:10px;overflow:hidden;position:absolute}.fb_dialog_top_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 0;left:-10px;top:-10px}.fb_dialog_top_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -10px;right:-10px;top:-10px}.fb_dialog_bottom_left{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -20px;bottom:-10px;left:-10px}.fb_dialog_bottom_right{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ye/r/8YeTNIlTZjm.png) no-repeat 0 -30px;right:-10px;bottom:-10px}.fb_dialog_vert_left,.fb_dialog_vert_right,.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{position:absolute;background:#525252;filter:alpha(opacity=70);opacity:.7}.fb_dialog_vert_left,.fb_dialog_vert_right{width:10px;height:100%}.fb_dialog_vert_left{margin-left:-10px}.fb_dialog_vert_right{right:0;margin-right:-10px}.fb_dialog_horiz_top,.fb_dialog_horiz_bottom{width:100%;height:10px}.fb_dialog_horiz_top{margin-top:-10px}.fb_dialog_horiz_bottom{bottom:0;margin-bottom:-10px}.fb_dialog_iframe{line-height:0}.fb_dialog_content .dialog_title{background:#6d84b4;border:1px solid #3b5998;color:#fff;font-size:14px;font-weight:bold;margin:0}.fb_dialog_content .dialog_title>span{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/yd/r/Cou7n-nqK52.gif) no-repeat 5px 50%;float:left;padding:5px 0 7px 26px}body.fb_hidden{-webkit-transform:none;height:100%;margin:0;overflow:visible;position:absolute;top:-10000px;left:0;width:100%}.fb_dialog.fb_dialog_mobile.loading{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/ya/r/3rhSv5V8j3o.gif) white no-repeat 50% 50%;min-height:100%;min-width:100%;overflow:hidden;position:absolute;top:0;z-index:10001}.fb_dialog.fb_dialog_mobile.loading.centered{max-height:590px;min-height:590px;max-width:500px;min-width:500px}#fb-root #fb_dialog_ipad_overlay{background:rgba(0, 0, 0, .45);position:absolute;left:0;top:0;width:100%;min-height:100%;z-index:10000}#fb-root #fb_dialog_ipad_overlay.hidden{display:none}.fb_dialog.fb_dialog_mobile.loading iframe{visibility:hidden}.fb_dialog_content .dialog_header{-webkit-box-shadow:white 0 1px 1px -1px inset;background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#738ABA), to(#2C4987));border-bottom:1px solid;border-color:#1d4088;color:#fff;font:14px Helvetica, sans-serif;font-weight:bold;text-overflow:ellipsis;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0;vertical-align:middle;white-space:nowrap}.fb_dialog_content .dialog_header table{-webkit-font-smoothing:subpixel-antialiased;height:43px;width:100%}.fb_dialog_content .dialog_header td.header_left{font-size:12px;padding-left:5px;vertical-align:middle;width:60px}.fb_dialog_content .dialog_header td.header_right{font-size:12px;padding-right:5px;vertical-align:middle;width:60px}.fb_dialog_content .touchable_button{background:-webkit-gradient(linear, 0% 0%, 0% 100%, from(#4966A6), color-stop(.5, #355492), to(#2A4887));border:1px solid #29447e;-webkit-background-clip:padding-box;-webkit-border-radius:3px;-webkit-box-shadow:rgba(0, 0, 0, .117188) 0 1px 1px inset, rgba(255, 255, 255, .167969) 0 1px 0;display:inline-block;margin-top:3px;max-width:85px;line-height:18px;padding:4px 12px;position:relative}.fb_dialog_content .dialog_header .touchable_button input{border:none;background:none;color:#fff;font:12px Helvetica, sans-serif;font-weight:bold;margin:2px -12px;padding:2px 6px 3px 6px;text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog_content .dialog_header .header_center{color:#fff;font-size:16px;font-weight:bold;line-height:18px;text-align:center;vertical-align:middle}.fb_dialog_content .dialog_content{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat 50% 50%;border:1px solid #555;border-bottom:0;border-top:0;height:150px}.fb_dialog_content .dialog_footer{background:#f2f2f2;border:1px solid #555;border-top-color:#ccc;height:40px}#fb_dialog_loader_close{float:left}.fb_dialog.fb_dialog_mobile .fb_dialog_close_button{text-shadow:rgba(0, 30, 84, .296875) 0 -1px 0}.fb_dialog.fb_dialog_mobile .fb_dialog_close_icon{visibility:hidden}
+.fb_iframe_widget{display:inline-block;position:relative}.fb_iframe_widget span{display:inline-block;position:relative;text-align:justify}.fb_iframe_widget iframe{position:absolute}.fb_iframe_widget_lift{z-index:1}.fb_hide_iframes iframe{position:relative;left:-10000px}.fb_iframe_widget_loader{position:relative;display:inline-block}.fb_iframe_widget_fluid{display:inline}.fb_iframe_widget_fluid span{width:100%}.fb_iframe_widget_loader iframe{min-height:32px;z-index:2;zoom:1}.fb_iframe_widget_loader .FB_Loader{background:url(http://static.ak.fbcdn.net/rsrc.php/v2/y9/r/jKEcVPZFk-2.gif) no-repeat;height:32px;width:32px;margin-left:-16px;position:absolute;left:50%;z-index:4}
+.fb_connect_bar_container div,.fb_connect_bar_container span,.fb_connect_bar_container a,.fb_connect_bar_container img,.fb_connect_bar_container strong{background:none;border-spacing:0;border:0;direction:ltr;font-style:normal;font-variant:normal;letter-spacing:normal;line-height:1;margin:0;overflow:visible;padding:0;text-align:left;text-decoration:none;text-indent:0;text-shadow:none;text-transform:none;visibility:visible;white-space:normal;word-spacing:normal;vertical-align:baseline}.fb_connect_bar_container{position:fixed;left:0 !important;right:0 !important;height:42px !important;padding:0 25px !important;margin:0 !important;vertical-align:middle !important;border-bottom:1px solid #333 !important;background:#3b5998 !important;z-index:99999999 !important;overflow:hidden !important}.fb_connect_bar_container_ie6{position:absolute;top:expression(document.compatMode=="CSS1Compat"? document.documentElement.scrollTop+"px":body.scrollTop+"px")}.fb_connect_bar{position:relative;margin:auto;height:100%;width:100%;padding:6px 0 0 0 !important;background:none;color:#fff !important;font-family:"lucida grande", tahoma, verdana, arial, sans-serif !important;font-size:13px !important;font-style:normal !important;font-variant:normal !important;font-weight:normal !important;letter-spacing:normal !important;line-height:1 !important;text-decoration:none !important;text-indent:0 !important;text-shadow:none !important;text-transform:none !important;white-space:normal !important;word-spacing:normal !important}.fb_connect_bar a:hover{color:#fff}.fb_connect_bar .fb_profile img{height:30px;width:30px;vertical-align:middle;margin:0 6px 5px 0}.fb_connect_bar div a,.fb_connect_bar span,.fb_connect_bar span a{color:#bac6da;font-size:11px;text-decoration:none}.fb_connect_bar .fb_buttons{float:right;margin-top:7px}
+.fbpluginrecommendationsbarleft,.fbpluginrecommendationsbarright{position:fixed !important;bottom:0;z-index:999}.fbpluginrecommendationsbarleft{left:10px}.fbpluginrecommendationsbarright{right:10px}</style></head>
+	<body id="ipboard_body" data-twttr-rendered="true" class=" hasGoogleVoiceExt">
+		<div id="fb-root" class=" fb_reset"><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div><iframe name="fb_xdm_frame_http" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_http" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" src="./InsanelyMacPost_files/8n77RrR4jg0.html" style="border: none;"></iframe><iframe name="fb_xdm_frame_https" frameborder="0" allowtransparency="true" scrolling="no" id="fb_xdm_frame_https" aria-hidden="true" title="Facebook Cross Domain Communication Frame" tab-index="-1" src="./InsanelyMacPost_files/8n77RrR4jg0(1).html" style="border: none;"></iframe></div></div><div style="position: absolute; top: -10000px; height: 0px; width: 0px;"><div></div></div></div>
+		<p id="content_jump" class="hide"><a id="top"></a><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#j_content" title="Jump to content" accesskey="m">Jump to content</a></p>
+		<div class="bg_gradient"></div>
+		<div class="bg_glow"></div>
+				<div id="doc" class="wrapper">
+			<div id="hd">
+				<div class="header_social clearfix">
+					<div class="hs_twitter"><iframe id="twitter-widget-0" scrolling="no" frameborder="0" allowtransparency="true" src="./InsanelyMacPost_files/follow_button.1397165098.html" class="twitter-follow-button twitter-follow-button" title="Twitter Follow Button" data-twttr-rendered="true" style="width: 238px; height: 20px;"></iframe></div>
+					<div class="hs_google"><div id="___plusone_0" style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 90px; height: 20px; background-position: initial initial; background-repeat: initial initial;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 90px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 20px;" tabindex="0" vspace="0" width="100%" id="I0_1397581323342" name="I0_1397581323342" src="./InsanelyMacPost_files/fastbutton(1).html" data-gapiattached="true" title="+1"></iframe></div></div>
+					<div class="hs_facebook"><div class="fb-like fb_iframe_widget" data-href="http://www.facebook.com/pages/InsanelyMac/236248203088701" data-send="false" data-layout="button_count" data-width="100" data-show-faces="false" fb-xfbml-state="rendered" fb-iframe-plugin-query="app_id=198516133569018&amp;href=http%3A%2F%2Fwww.facebook.com%2Fpages%2FInsanelyMac%2F236248203088701&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=100"><span style="vertical-align: bottom; width: 82px; height: 20px;"><iframe name="fd4c34fc" width="100px" height="1000px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./InsanelyMacPost_files/like(1).html" class="" style="border: none; visibility: visible; width: 82px; height: 20px;"></iframe></span></div></div>
+				</div>
+				<div class="header_width clear">
+															<img src="./InsanelyMacPost_files/clear.gif" alt="" class="gif-delayer gif-delayer-loaded"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#" id="width-fluid" class="current_width">fluid</a> | <a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#" id="width-fixed">fixed</a>
+				</div>
+				<div id="bannerTop">
+					<!-- InsanelyMac_Forum_Top_728x90 -->
+					<div id="div-gpt-ad-1358550324989-0" style="width:728px; height:90px;">
+						<script type="text/javascript">
+							googletag.cmd.push(function() { googletag.display('div-gpt-ad-1358550324989-0'); });
+						</script>
+					</div>
+				</div>
+				<div class="navWrap">
+					<div class="header_hr"></div>
+					<!-- ::: BRANDING STRIP: Logo and search box ::: -->
+					
+<div id="chat-tab-count-wrap"><span id="chat-tab-count" class="ipsHasNotifications" title="" style="display:none;">9</span></div>
+<script type="text/javascript">
+// And then move
+document.observe("dom:loaded", function(){
+	var _thisHtml	= $('nav_app_ipchat').down('a').innerHTML;
+	_thisHtml = _thisHtml + $('chat-tab-count-wrap').innerHTML;
+	$('nav_app_ipchat').down('a').update( _thisHtml ).setStyle( { position: 'relative' } );
+	$('chat-tab-count-wrap').remove();
+	$('chat-tab-count').show();
+});
+</script>
+
+						<a class="logo" href="http://www.insanelymac.com/"></a>
+					
+					<div class="mainnav">
+						<a href="http://www.insanelymac.com/">News</a>
+						<a class="activelink" href="http://www.insanelymac.com/forum/">Forum</a>
+						<a href="http://www.insanelymac.com/forum/files/">Downloads</a>
+						<a href="http://wiki.osx86project.org/wiki/index.php/Main_Page">OSx86 Wiki</a>
+						<a href="http://www.mymacnetbook.com/">Mac Netbook</a>
+					</div>
+					
+						<div id="search">
+	<form action="http://www.insanelymac.com/forum/index.php?app=core&module=search&do=search&fromMainBar=1" method="post" id="search-box">
+		<fieldset>
+			<label for="main_search" class="hide">Search</label>
+			<a href="http://www.insanelymac.com/forum/index.php?app=core&module=search&search_in=forums" title="Advanced Search" accesskey="4" rel="search" id="adv_search" class="right"><img src="./InsanelyMacPost_files/clear.gif" alt="" class="gif-delayer gif-delayer-loaded"><span class="hide">Advanced</span></a>
+			<span id="search_wrap">
+				<img src="./InsanelyMacPost_files/clear.gif" alt="" class="gif-delayer gif-delayer-loaded">
+				<input type="text" id="main_search" name="search_term" class="" size="20" tabindex="6" placeholder="Search..." data-cip-id="main_search">
+				<span class="choice ipbmenu clickable" id="search_options">This topic</span>
+				<ul id="search_options_menucontent" class="ipbmenu_content ipsPad" style="display: none; position: absolute; z-index: 9999;">
+					<li class="title" style="z-index: 10000;"><strong style="z-index: 10000;">Search section:</strong></li>
+					<li class="special" style="z-index: 10000;">
+							<label for="s_topic" title="This topic" style="z-index: 10000;">
+								<input type="radio" name="search_app" value="forums:topic:184462" class="input_radio" id="s_topic" checked="checked" style="z-index: 10000;"><strong style="z-index: 10000;">This topic</strong>
+							</label>
+						</li>
+					
+					
+					<li class="app" style="z-index: 10000;"><label for="s_forums" title="Forums" style="z-index: 10000;"><input type="radio" name="search_app" class="input_radio" id="s_forums" value="forums" style="z-index: 10000;">Forums</label></li>
+					<li class="app" style="z-index: 10000;"><label for="s_members" title="Members" style="z-index: 10000;"><input type="radio" name="search_app" class="input_radio" id="s_members" value="members" style="z-index: 10000;">Members</label></li>
+					<li class="app" style="z-index: 10000;"><label for="s_core" title="Help Files" style="z-index: 10000;"><input type="radio" name="search_app" class="input_radio" id="s_core" value="core" style="z-index: 10000;">Help Files</label></li>
+						
+						
+					
+	
+						
+					
+	
+						
+					
+	
+						<li class="app" style="z-index: 10000;">
+								<label for="s_downloads" title="Downloads" style="z-index: 10000;">
+									<input type="radio" name="search_app" class="input_radio" id="s_downloads" value="downloads" style="z-index: 10000;">Downloads
+								</label>
+							</li>
+					
+	
+						<li class="app" style="z-index: 10000;">
+								<label for="s_ccs" title="Pages" style="z-index: 10000;">
+									<input type="radio" name="search_app" class="input_radio" id="s_ccs" value="ccs" style="z-index: 10000;">Pages
+								</label>
+							</li>
+					
+	
+						
+					
+	
+						
+					
+	
+						
+					
+	
+						
+					
+	
+						
+					
+	
+						
+					
+				</ul>
+			</span>
+			
+		</fieldset>
+	</form>
+</div>
+					
+				</div>
+			</div>
+			<div id="ipbwrapper" class="contentWrapper">
+				<!-- ::: TOP BAR: Sign in / register or user drop down and notification alerts ::: -->			
+				<div id="nav_wrap" class="clearfix">
+					<div id="user_navigation" class="not_logged_in">
+							
+							<ul class="ipsList_inline right">
+								<li>
+									<span class="services">
+										
+											<a href="http://www.insanelymac.com/forum/index.php?app=core&module=global&section=login&serviceClick=facebook"><img src="./InsanelyMacPost_files/facebook.png" alt="Log in with Facebook"></a>
+										
+										
+											<a href="http://www.insanelymac.com/forum/index.php?app=core&module=global&section=login&serviceClick=twitter"><img src="./InsanelyMacPost_files/twitter.png" alt="Log in with Twitter"></a>
+										
+										
+									</span>
+									<a href="http://www.insanelymac.com/forum/index.php?app=core&module=global&section=login" title="Sign In" id="sign_in"><img src="./InsanelyMacPost_files/user_login.png" alt=""> Sign In</a>
+								</li>
+								<li>
+									<a href="http://www.insanelymac.com/forum/index.php?app=core&module=global&section=register" title="Create Account" id="register_link"><img src="./InsanelyMacPost_files/user_register.png" alt=""> Create Account</a>
+								</li>
+								<li><a href="http://www.insanelymac.com/forum/index.php?app=core&module=search&do=viewNewContent&search_app=forums" accesskey="2" class="userNewContent">View New Content</a></li>
+							</ul>
+						</div>
+			<!-- ::: APPLICATION TABS ::: -->
+			<div id="primary_nav" class="clearfix">
+					<ul class="ipsList_inline" id="community_app_menu">
+						
+						
+								
+		
+			
+				
+										
+				
+			
+			
+		
+
+			
+				
+										
+				
+			
+			<li id="nav_app_forums" class="left active"><a href="http://www.insanelymac.com/forum/" title="Go to Forums">Forums</a></li>
+		
+
+			
+				
+										
+				
+			
+			<li id="nav_app_members" class="left "><a href="http://www.insanelymac.com/forum/members/" title="Go to Members">Members</a></li>
+		
+
+			
+				
+										
+				
+			
+			<li id="nav_app_downloads" class="left "><a href="http://www.insanelymac.com/forum/files/" title="Go to Downloads">Downloads</a></li>
+		
+
+			
+				
+										
+				
+			
+			
+		
+
+			
+				
+										
+				
+			
+			
+		
+
+			
+				
+										
+				
+			
+			
+		
+
+			
+				
+										
+				
+			
+			<li id="nav_app_rules" class="left "><a href="http://www.insanelymac.com/forum/rules/" title="Go to Rules">Rules</a></li>
+		
+
+			
+				
+										
+				
+			
+			
+		
+
+			
+				
+										
+				
+			
+			
+		
+
+			
+				
+										
+				
+			
+			
+		
+	
+	
+		
+						
+		
+	
+						
+						<li id="nav_other_apps" style="display: none;">
+							<a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#" class="ipbmenu" id="more_apps">More <img src="./InsanelyMacPost_files/clear.gif" class="gif-delayer gif-delayer-loaded"></a>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			
+			<!-- ::: MAIN CONTENT AREA ::: -->
+			<div id="content" class="clearfix">
+				<!-- ::: NAVIGATION BREADCRUMBS ::: -->
+				<div id="secNavWrap" class="clearfix">
+					<div id="secondary_navigation" class="clearfix noskim">
+						<ol class="breadcrumb top ipsList_inline left" id="breadcrumb">
+														<li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb" class="first">
+									<a href="http://www.insanelymac.com/forum/" itemprop="url">
+										<span itemprop="title">InsanelyMac Forum</span>
+									</a>
+								</li>
+								
+							
+								<li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+									 <a href="http://www.insanelymac.com/forum/forum/85-osx86-project/" title="Return to OSx86 Project" itemprop="url"><span itemprop="title">OSx86 Project</span></a>
+								</li>
+								
+							
+
+								<li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+									 <a href="http://www.insanelymac.com/forum/forum/137-osx86-installation/" title="Return to OSx86 Installation" itemprop="url"><span itemprop="title">OSx86 Installation</span></a>
+								</li>
+								
+							
+
+								<li itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
+									 <a href="http://www.insanelymac.com/forum/forum/178-osx86-106-snow-leopard/" title="Return to OSx86 10.6 (Snow Leopard)" itemprop="url"><span itemprop="title">OSx86 10.6 (Snow Leopard)</span></a>
+								</li>
+								
+							
+						</ol>
+					</div>
+					<ul id="secondary_links" class="ipsList_inline right">
+						
+							<li><a href="http://www.insanelymac.com/forum/index.php?app=core&module=global&section=navigation&inapp=forums" rel="quickNavigation" accesskey="9" id="quickNavLaunch" title=""><img src="./InsanelyMacPost_files/clear.gif" alt="" data-tooltip="Open Quick Navigation" class="gif-delayer gif-delayer-loaded"></a></li>
+						
+					</ul>
+				</div>
+				<noscript>
+					&lt;div class='message error'&gt;
+						&lt;strong&gt;Javascript Disabled Detected&lt;/strong&gt;
+						&lt;p&gt;You currently have javascript disabled. Several functions may not work. Please re-enable javascript to access full functionality.&lt;/p&gt;
+					&lt;/div&gt;
+					&lt;br /&gt;
+				</noscript>
+				<!-- ::: CONTENT ::: -->
+				
+				
+				
+				
+
+<script type="text/javascript">
+//<![CDATA[
+	ipb.topic.inSection    = 'topicview';
+	ipb.topic.topic_id     = 184462;
+	ipb.topic.forum_id     = 178;
+	ipb.topic.redirectPost = 1;
+	ipb.topic.start_id     = 0;
+	ipb.topic.page_id      = 0;
+	ipb.topic.topPid       = 0;
+	ipb.topic.counts       = { postTotal: 172,
+							  curStart:  ipb.topic.start_id,
+							  perPage:   20 };
+	//Search Setup
+	ipb.vars['search_type']			= 'forum';
+	ipb.vars['search_type_id']		= 178;
+	ipb.vars['search_type_2']		= 'topic';
+	ipb.vars['search_type_id_2']	= 184462;
+	
+	
+	// Delete stuff set up
+	ipb.topic.deleteUrls['hardDelete'] = new Template( ipb.vars['base_url'] + "app=forums&module=moderate&section=moderate&do=04&f=178&t=184462&page=&auth_key=880ea6a14ea49e853634fbdc5015a024&p=#{pid}" );
+	ipb.topic.deleteUrls['softDelete'] = new Template( ipb.vars['base_url'] + "app=forums&module=moderate&section=moderate&do=postchoice&tact=sdelete&t=184462&f=178&auth_key=880ea6a14ea49e853634fbdc5015a024&selectedpids[#{pid}]=#{pid}&pid=#{pid}" );
+	
+	
+	ipb.topic.modPerms	  = [];
+	
+	
+	ipb.templates['post_moderation'] = new Template("<div id='comment_moderate_box' class='ipsFloatingAction' style='display: none'><span class='desc'>With <span id='comment_count'>#{count}</span> checked posts: </span><select id='tactInPopup' class='input_select'><option value='approve'>Approve</option><option value='delete'>Hide</option><option value='sundelete'>Unhide</option><option value='deletedo'>Delete</option><option value='merge'>Merge</option><option value='split'>Split</option><option value='move'>Move</option></select>&nbsp;&nbsp;<input type='button' class='input_submit' id='submitModAction' value='Go' /></div>");
+	
+//]]>
+</script>
+
+
+
+
+<div class="ipbfs_titlebox">
+	
+		<a href="http://www.insanelymac.com/forum/user/304835-sunkid/" class="ipsUserPhotoLink">
+	
+	<img src="./InsanelyMacPost_files/default_large.png" class="ipsUserPhoto ipsUserPhoto_medium left">
+	
+		</a>
+	
+	<div itemscope="" itemtype="http://schema.org/Article" class="ipsBox_withphoto">
+		<span class="right">
+<div class="__like right" data-app="forums" data-area="topics" data-relid="184462" data-isfave="">
+	<span class="ipsButton_extra right _fmore clickable" title="32 member(s) follow this topic" data-tooltip="32 member(s) follow this topic"><img src="./InsanelyMacPost_files/icon_users.png"> <strong>32</strong></span>
+
+</div>
+<script type="text/javascript">
+	var FAVE_TEMPLATE = new Template( "<h3>Unfollow this topic</h3><div class='ipsPad'><span class='desc'>If you unfollow this topic you will no longer receive any notifications</span><br /><p class='ipsForm_center'><input type='button' value='Unfollow this topic' class='input_submit _funset' /></p></div>");
+</script></span>
+		<h1 itemprop="name" class="ipsType_pagetitle">[Guide] 10.6 (Snow Leopard) Time Machine backup to network share</h1>
+		
+		<div class="desc lighter blend_links">
+			 Started by <span itemprop="creator"><a hovercard-ref="member" hovercard-id="304835" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="" id="anonymous_element_3"><span itemprop="name">sunkid</span></a></span>, <span itemprop="dateCreated">Sep 06 2009 04:03 AM</span>
+		</div>
+		
+		<meta itemprop="interactionCount" content="UserComments:172">
+	</div>
+</div>
+
+
+
+<br>
+<div class="topic_controls">
+	<div class="pagination clearfix left ">
+		<ul class="ipsList_inline back left">
+			
+			
+		</ul>
+		<ul class="ipsList_inline left pages">
+			<li class="pagejump clickable pj0866697001" id="anonymous_element_1">
+					<a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#">Page 1 of 9 <!--<img src='http://www.insanelymac.com/forum/public/style_images/insanely_mac/dropdown.png' alt='+' />--></a>
+					<script type="text/javascript">
+						ipb.global.registerPageJump( '0866697001', { url: "http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/", stKey: 'st', perPage: 20, totalPages: 9, anchor: '' } );
+					</script>
+				</li>
+			
+				
+					
+						<li class="page active">1</li>
+					
+				
+
+					<li class="page">
+							<a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/page-2" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share - Page 2">2</a>
+						</li>
+				
+
+					<li class="page">
+							<a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/page-3" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share - Page 3">3</a>
+						</li>
+				
+			
+		</ul>
+		<ul class="ipsList_inline forward left">
+			<li class="next"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/page-2" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share - Next page" rel="next">Next</a></li>
+			<li class="last"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/page-9" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share - Go to last page" rel="last">»</a></li>
+		</ul>
+	</div>
+	
+
+
+	<ul class="topic_buttons">
+			<li class="disabled"><span>Please log in to reply</span></li>
+			
+			
+		</ul>
+</div>
+
+<div class="border">
+<div class="maintitle clear clearfix">
+	<span class="ipsType_small">
+		171 replies to this topic
+	</span>
+	
+</div>
+
+
+<div class="topic hfeed clear clearfix removeDefault">
+	
+
+	<div class="ipsBox">
+		<div class="ipsBox_container" id="ips_Posts">
+			
+				<!--post:1253495-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1253495">
+		<a id="entry1253495"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1253495" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1253495" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #1">
+					
+					#1
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #1">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="304835" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="" id="anonymous_element_4"><span itemprop="name">sunkid</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-06T04:03:18+00:00">06 September 2009 - 04:03 AM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">sunkid</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="View Profile: sunkid" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="./InsanelyMacPost_files/default_large.png" class="ipsUserPhoto ipsUserPhoto_large">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			41 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:00 +0000-->The upgrade to Snow Leopard breaks 10.5.x time machine backups configured with AFP shares on non-mac based network volumes as per <a href="http://www.macosxhints.com/article.php?story=20080420211034137" class="bbc_url" title="External link" rel="nofollow external">these instructions</a>, for example. After some trial and error, I was able to find out that the secrect lies with a hidden property list file that specifies the hardware UUID for the machine to be backed up.    The following are some simple instructions to set up a new backup volume from scratch. They may work for upgrading a Leopard TM disk to SL, but I have not been able to verify this. Attached are a shell script that will do all the work for you and a property list file in case you want to try it yourself.<br>      <br>    <strong class="bbc"><span style="font-size: 12px"><span style="color: #8b0000">1. SETUP</span></span></strong><br>    <br>    If your time machine is already configured to backup to a networked AFP share, move on to the next step. Otherwise, follow the setup procedure in the link above.<br>    <br>    <strong class="bbc"><span style="font-size: 12px"><span style="color: #8b0000">2. SIMPLE PROCEDURE</span></span></strong><br>    <br>    Run the attached shell script with command line arguments specifying the maximum size for your backup image and the shared directory you want to backup to (the second argument is optional).<br>    <br>    Example:  <pre class="prettyprint lang-auto linenums:0 prettyprinted"><span class="pln">sh  </span><span class="pun">./</span><span class="pln">makeImage</span><span class="pun">.</span><span class="pln">sh </span><span class="lit">600</span><span class="pln"> </span><span class="pun">/</span><span class="typ">Volumes</span><span class="pun">/</span><span class="pln">backup</span></pre>    This will create a time machine ready disk image named with your computer's name with a maximum size of 600GB and copy it to /Volumes/backup. The image "file" (it's a directory, really) will contain the property list file that SL's TM needs.<br>    <br>    If you don't specify the backup volume, you will need to do the coying yourself:  <pre class="prettyprint lang-auto linenums:0 prettyprinted"><span class="pln">cp </span><span class="pun">-</span><span class="pln">pfr </span><span class="pun">&lt;</span><span class="pln">computer name</span><span class="pun">&gt;.</span><span class="pln">sparsebundle </span><span class="pun">/</span><span class="typ">Volumes</span><span class="pun">/</span><span class="pln">backup</span><span class="pun">/&lt;</span><span class="pln">computer name</span><span class="pun">&gt;.</span><span class="pln">sparsebundle</span></pre>    You may or may not have to execute the script and the copy command as root. I have not tried it out both ways and only done it as root.<br>    <br>    <strong class="bbc"><span style="font-size: 12px"><span style="color: #8b0000">3. "MANUAL" PROCEDURE</span></span></strong><br><br>a. Create a disk image named with the name of your machine's computer name (not sure that this is crucial; you can find it in System Preferences -&gt; Sharing). This example is for a 500GB (max size) image for a machine named snowy:  <pre class="prettyprint lang-auto linenums:0 prettyprinted"><span class="pln">hdiutil create </span><span class="pun">-</span><span class="pln">size </span><span class="lit">500G</span><span class="pln"> </span><span class="pun">-</span><span class="pln">fs HFS</span><span class="pun">+</span><span class="pln">J </span><span class="pun">-</span><span class="pln">volname </span><span class="str">'Time Machine Backups'</span><span class="pln"> </span><span class="pun">-</span><span class="pln">type SPARSEBUNDLE snowy</span><span class="pun">.</span><span class="pln">sparsebundle</span></pre>  <br>b. Edit the attached com.apple.TimeMachine.MachineID.plist file and copy your machine's hardware UUID in the correct place. You can find your hardware UUID in the System Profiler  <br><br>c. Copy the modified com.apple.TimeMachine.MachineID.plist file into your disk image directory:  <pre class="prettyprint lang-auto linenums:0 prettyprinted"><span class="pln">cp com</span><span class="pun">.</span><span class="pln">apple</span><span class="pun">.</span><span class="typ">TimeMachine</span><span class="pun">.</span><span class="typ">MachineID</span><span class="pun">.</span><span class="pln">plist snowy</span><span class="pun">.</span><span class="pln">sparsebundle</span><span class="pun">/</span></pre>  <br>d. Copy your disk image file to your mounted backup volume. This example assumes an AFP share with the name backups:  <pre class="prettyprint lang-auto linenums:0 prettyprinted"><span class="pln">cp </span><span class="pun">-</span><span class="pln">pfr snowy</span><span class="pun">.</span><span class="pln">sparsebundle </span><span class="pun">/</span><span class="typ">Volumes</span><span class="pun">/</span><span class="pln">backups</span><span class="pun">/</span><span class="pln">snowy</span><span class="pun">.</span><span class="pln">sparsebundle</span></pre>  <br><br>Please let me know if you run into any issues. The attached script works for me but it may not work for you. I make no guarantees whatsoever!!<br><strong class="bbc"><br>NOTE:</strong> remove the '.txt' extension from the attached files.<br><br>UPDATE 9/6/9: Fixed shell script to handle computer names with spaces.<br><strong class="bbc">UPDATE 9/24/9: We made it onto <a href="http://www.macosxhints.com/article.php?story=20090905212640957" class="bbc_url" title="External link" rel="nofollow external">macosxhints.com</a> </strong> <span rel="lightbox"><img class="bbc_img gif-delayer gif-delayer-loaded" src="./InsanelyMacPost_files/thumbsup_anim.gif" alt=":("></span>
+					<div id="attach_wrap" class="rounded clearfix">
+	<h4>Attached Files</h4>
+	<ul>
+		
+			<li class="attachment">
+				<a href="http://www.insanelymac.com/forum/index.php?app=core&module=attach&section=attach&attach_id=55807" title="Download attachment"><img src="./InsanelyMacPost_files/txt.gif" alt="Attached File" class="gif-delayer gif-delayer-loaded"></a>
+&nbsp;<a href="http://www.insanelymac.com/forum/index.php?app=core&module=attach&section=attach&attach_id=55807" title="Download attachment"><strong>makeImage.sh.txt</strong></a> &nbsp;&nbsp;<span class="desc"><strong>1.83KB</strong></span>
+&nbsp;&nbsp;<span class="desc lighter">9816 downloads</span>
+			</li>
+		
+
+			<li class="attachment">
+				<a href="http://www.insanelymac.com/forum/index.php?app=core&module=attach&section=attach&attach_id=55700" title="Download attachment"><img src="./InsanelyMacPost_files/txt.gif" alt="Attached File" class="gif-delayer gif-delayer-loaded"></a>
+&nbsp;<a href="http://www.insanelymac.com/forum/index.php?app=core&module=attach&section=attach&attach_id=55700" title="Download attachment"><strong>com.apple.TimeMachine.MachineID.plist.txt</strong></a> &nbsp;&nbsp;<span class="desc"><strong>258bytes</strong></span>
+&nbsp;&nbsp;<span class="desc lighter">8106 downloads</span>
+			</li>
+		
+	</ul>
+</div>
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1253495">
+				<ul class="ipsList_inline">
+					<li id="like_post_1253495" class="ipsLikeBar_info">
+							<a hovercard-ref="member" hovercard-id="1012770" data-ipb="noparse" class="url fn name   ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/1012770-becho/" title="" id="anonymous_element_5"><span itemprop="name">becho</span></a> likes this
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1253495', { domLikeStripId: 'like_post_1253495', app: 'forums', type: 'pid', typeid: '1253495' }, parseInt('1') );
+</script>
+				
+								
+				
+					<!--signature.hidden.1253495-->
+				
+				
+				
+			
+				<ul id="postControlsNormal_1253495" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1253495);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1253495') )
+	{
+		$('multiq_1253495').show();
+	}
+	
+	if( $('toggle_post_1253495') )
+	{
+		$('toggle_post_1253495').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1253495] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1255151-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1255151">
+		<a id="entry1255151"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1255151" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1255151" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #2">
+					
+					#2
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #2">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="437386" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/437386-brett-whinnen/" title="" id="anonymous_element_6"><span itemprop="name">Brett Whinnen</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-07T08:37:04+00:00">07 September 2009 - 08:37 AM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">Brett Whinnen</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Geek</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/437386-brett-whinnen/" title="View Profile: Brett Whinnen" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip"><img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip"><img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			146 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+						<li>
+							<span class="ft">Gender:</span><span class="fc">Male</span>
+						</li>
+					
+				
+
+					
+						<li>
+							<span class="ft">Location:</span><span class="fc">Bne, AU</span>
+						</li>
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:00 +0000-->Thank you! That was the missing key for me. I had everything else right, just needed the file within the .sparsebundle!<br>
+<br>
+Great work!<br>
+<br>
+Brett
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1255151">
+				<ul class="ipsList_inline">
+					<li id="like_post_1255151" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1255151', { domLikeStripId: 'like_post_1255151', app: 'forums', type: 'pid', typeid: '1255151' }, parseInt('0') );
+</script>
+				
+								
+				
+					<!--signature.hidden.1255151-->
+				
+				
+				
+			
+				<ul id="postControlsNormal_1255151" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1255151);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1255151') )
+	{
+		$('multiq_1255151').show();
+	}
+	
+	if( $('toggle_post_1255151') )
+	{
+		$('toggle_post_1255151').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1255151] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1255773-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1255773">
+		<a id="entry1255773"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1255773" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1255773" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #3">
+					
+					#3
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #3">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="150353" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/150353-pitt1717/" title="" id="anonymous_element_7"><span itemprop="name">pitt1717</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-07T16:57:34+00:00">07 September 2009 - 04:57 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">pitt1717</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/150353-pitt1717/" title="View Profile: pitt1717" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Just Joined
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			2 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+						<div class="inpostad">
+							<!-- InsanelyMac_Forum_InPost_300x250 -->
+							<div id="div-gpt-ad-1358550279041-0" style="width:300px; height:250px;">
+								<script type="text/javascript">
+									googletag.cmd.push(function() { googletag.display('div-gpt-ad-1358550279041-0'); });
+								</script>
+							</div>
+						</div>
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:00 +0000-->not sure how some of you guys find this stuff. but nice job and thank you!!! now on to start a backup
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1255773">
+				<ul class="ipsList_inline">
+					<li id="like_post_1255773" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1255773', { domLikeStripId: 'like_post_1255773', app: 'forums', type: 'pid', typeid: '1255773' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1255773" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1255773);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1255773') )
+	{
+		$('multiq_1255773').show();
+	}
+	
+	if( $('toggle_post_1255773') )
+	{
+		$('toggle_post_1255773').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1255773] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1255813-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1255813">
+		<a id="entry1255813"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1255813" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1255813" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #4">
+					
+					#4
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #4">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="465544" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/465544-skabob11/" title="" id="anonymous_element_8"><span itemprop="name">skabob11</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-07T17:21:52+00:00">07 September 2009 - 05:21 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">skabob11</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/465544-skabob11/" title="View Profile: skabob11" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			7 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:00 +0000-->I haven't been able to get this to work. It mounts the sparsebundle and then when it gets to Indexing Backup it just unmounts the disk and sets the next backup to an hour from now. I had this running fine on 10.5 but its since broke when I updated to snow leopard.<br>
+<br>
+I have tried running the shell script as root and doing it manually both no go.<br>
+<br>
+Any ideas?
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1255813">
+				<ul class="ipsList_inline">
+					<li id="like_post_1255813" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1255813', { domLikeStripId: 'like_post_1255813', app: 'forums', type: 'pid', typeid: '1255813' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1255813" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1255813);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1255813') )
+	{
+		$('multiq_1255813').show();
+	}
+	
+	if( $('toggle_post_1255813') )
+	{
+		$('toggle_post_1255813').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1255813] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1256151-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1256151">
+		<a id="entry1256151"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1256151" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1256151" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #5">
+					
+					#5
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #5">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="304835" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="" id="anonymous_element_9"><span itemprop="name">sunkid</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-07T20:47:56+00:00">07 September 2009 - 08:47 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">sunkid</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="View Profile: sunkid" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			41 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:01 +0000--><p class="citation">skabob11, on Sep 7 2009, 10:21 AM, said:<a class="snapback right" rel="citation" href="http://www.insanelymac.com/forum/index.php?app=forums&module=forums&section=findpost&pid=1255813"><img src="./InsanelyMacPost_files/snapback.png"></a></p><blockquote class="ipsBlockquote built" data-author="skabob11" data-cid="1255813" data-date="Sep 7 2009, 10:21 AM"><p>I haven't been able to get this to work. It mounts the sparsebundle and then when it gets to Indexing Backup it just unmounts the disk and sets the next backup to an hour from now. I had this running fine on 10.5 but its since broke when I updated to snow leopard.<br><br>I have tried running the shell script as root and doing it manually both no go.<br><br>Any ideas?</p></blockquote><br>Check your logs, they may indicate what the issue is. Maybe your disk image doesn't have enough space for the backup.<br><br>As for how I found the trick: to get a working image, I pointed my time machine at a leopard-bases AFP share on a mac laptop. Once I had that, I saw the new plist file in it. Took me a while to figure out that the extended properties on it where doing nothing else other than hiding it from the Finder. Time machine doesn't seem to care about that though.
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1256151">
+				<ul class="ipsList_inline">
+					<li id="like_post_1256151" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1256151', { domLikeStripId: 'like_post_1256151', app: 'forums', type: 'pid', typeid: '1256151' }, parseInt('0') );
+</script>
+				
+								
+				
+					<!--signature.hidden.1256151-->
+				
+				
+				
+			
+				<ul id="postControlsNormal_1256151" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1256151);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1256151') )
+	{
+		$('multiq_1256151').show();
+	}
+	
+	if( $('toggle_post_1256151') )
+	{
+		$('toggle_post_1256151').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1256151] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1256636-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1256636">
+		<a id="entry1256636"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1256636" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1256636" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #6">
+					
+					#6
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #6">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="486412" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/486412-robbtheknob/" title="" id="anonymous_element_10"><span itemprop="name">robbtheknob</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-08T04:11:26+00:00">08 September 2009 - 04:11 AM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">robbtheknob</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/486412-robbtheknob/" title="View Profile: robbtheknob" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Just Joined
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			1 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:01 +0000--><p class="citation">skabob11, on Sep 7 2009, 05:21 PM, said:<a class="snapback right" rel="citation" href="http://www.insanelymac.com/forum/index.php?app=forums&module=forums&section=findpost&pid=1255813"><img src="./InsanelyMacPost_files/snapback.png"></a></p><blockquote class="ipsBlockquote built" data-author="skabob11" data-cid="1255813" data-date="Sep 7 2009, 05:21 PM"><p>I haven't been able to get this to work. It mounts the sparsebundle and then when it gets to Indexing Backup it just unmounts the disk and sets the next backup to an hour from now. I had this running fine on 10.5 but its since broke when I updated to snow leopard.<br><br>I have tried running the shell script as root and doing it manually both no go.<br><br>Any ideas?</p></blockquote><br><br>I have this same problem since upgrading to 10.6.  After looking in the system log, I see that 'diskimage helper'  is automatically unmounting the sparsebundle before the backup can be made. (09-09-07 8:11:06 PM	diskimages-helper[5439]	terminating disk1 - image is no longer available)<br><br>Does anyone know why this might be happening?
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1256636">
+				<ul class="ipsList_inline">
+					<li id="like_post_1256636" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1256636', { domLikeStripId: 'like_post_1256636', app: 'forums', type: 'pid', typeid: '1256636' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1256636" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1256636);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1256636') )
+	{
+		$('multiq_1256636').show();
+	}
+	
+	if( $('toggle_post_1256636') )
+	{
+		$('toggle_post_1256636').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1256636] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1257067-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1257067">
+		<a id="entry1257067"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1257067" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1257067" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #7">
+					
+					#7
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #7">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="465544" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/465544-skabob11/" title="" id="anonymous_element_11"><span itemprop="name">skabob11</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-08T13:19:18+00:00">08 September 2009 - 01:19 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">skabob11</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/465544-skabob11/" title="View Profile: skabob11" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			7 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:01 +0000-->I'm uploading my logs from watching backupd in Console. Perhaps we can compare it to someone's logs with a working backup in 10.6?<br>
+<br>
+A few things I notice from looking at the logs:<br>
+<br>
+afp://admin@donald.selfip.org/Clyde is my home server. Clyde is the name of the hard drive hooked up to the server. When backupd refers to the drive on line 4-6 it calls it Clyde-1. Not sure why. I can erase, partition this disk, whatever if there are any suggestions<br>
+<br>
+Another thing. Time Machine says in System Prefs 299.02 GB of 299.93 GB available. If I login to the server it has the correct size of the drive: 279.5 GB. The logs show 269.28 GB available on line 9 which makes sense because using the shell script I had the sparsebundle made for 270 GB. In the finder the afp share shows 299.02 GB as well. The same happens if I mount any of the other drives hooked up to the server, the size of the drive in 10.7 is larger then it is on the server.<br>
+<br>
+The server by the way is running 10.4.11<br>
+<br>
+So it's doing the same thing as I mentioned before and as @robbtheknob but I'm not seeing the same message you are.<br>
+<br>
+The logs are below<br>
+[codebox]9/8/09 9:02:18 AM	com.apple.backupd[630]	Starting standard backup<br>
+9/8/09 9:02:18 AM	com.apple.backupd[630]	Attempting to mount network destination using URL: afp://admin@donald.selfip.org/Clyde<br>
+9/8/09 9:02:19 AM	com.apple.backupd[630]	Mounted network destination using URL: afp://admin@donald.selfip.org/Clyde<br>
+9/8/09 9:02:19 AM	com.apple.backupd[630]	Warning: Destination /Volumes/Clyde-1 does not support TM Lock Stealing<br>
+9/8/09 9:02:19 AM	com.apple.backupd[630]	Warning: Destination /Volumes/Clyde-1 does not support Server Reply Cache<br>
+9/8/09 9:02:34 AM	com.apple.backupd[630]	Disk image /Volumes/Clyde-1/Winston.sparsebundle mounted at: /Volumes/Time Machine Backups<br>
+9/8/09 9:02:34 AM	com.apple.backupd[630]	Backing up to: /Volumes/Time Machine Backups/Backups.backupdb<br>
+9/8/09 9:02:40 AM	com.apple.backupd[630]	Backup content size: 172.7 GB excluded items size: 5.7 GB for volume Macintosh HD<br>
+9/8/09 9:02:40 AM	com.apple.backupd[630]	No pre-backup thinning needed: 200.47 GB requested (including padding), 269.28 GB available<br>
+9/8/09 9:02:40 AM	com.apple.backupd[630]	Waiting for index to be ready (101)<br>
+9/8/09 9:02:41 AM	mds[37]	(Normal) DiskStore: Creating index for /Volumes/Time Machine Backups/Backups.backupdb<br>
+9/8/09 9:02:41 AM	com.apple.backupd[630]	Stopping backupd to allow ejection of backup destination disk!<br>
+9/8/09 9:02:42 AM	com.apple.backupd[630]	Indexer unavailable (200)<br>
+9/8/09 9:02:42 AM	com.apple.backupd[630]	Copied 0 files (0 bytes) from volume Macintosh HD.[/codebox]
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1257067">
+				<ul class="ipsList_inline">
+					<li id="like_post_1257067" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1257067', { domLikeStripId: 'like_post_1257067', app: 'forums', type: 'pid', typeid: '1257067' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1257067" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1257067);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1257067') )
+	{
+		$('multiq_1257067').show();
+	}
+	
+	if( $('toggle_post_1257067') )
+	{
+		$('toggle_post_1257067').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1257067] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1257071-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1257071">
+		<a id="entry1257071"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1257071" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1257071" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #8">
+					
+					#8
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #8">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="304835" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="" id="anonymous_element_12"><span itemprop="name">sunkid</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-08T13:24:51+00:00">08 September 2009 - 01:24 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">sunkid</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="View Profile: sunkid" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			41 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:02 +0000--><p class="citation">skabob11, on Sep 8 2009, 06:19 AM, said:<a class="snapback right" rel="citation" href="http://www.insanelymac.com/forum/index.php?app=forums&module=forums&section=findpost&pid=1257067"><img src="./InsanelyMacPost_files/snapback.png"></a></p><blockquote class="ipsBlockquote built" data-author="skabob11" data-cid="1257067" data-date="Sep 8 2009, 06:19 AM"><p>[snip]<br>Another thing. Time Machine says in System Prefs 299.02 GB of 299.93 GB available. If I login to the server it has the correct size of the drive: 279.5 GB. The logs show 269.28 GB available on line 9 which makes sense because using the shell script I had the sparsebundle made for 270 GB. In the finder the afp share shows 299.02 GB as well. The same happens if I mount any of the other drives hooked up to the server, the size of the drive in 10.7 is larger then it is on the server.<br>[snip]</p></blockquote><br>That is odd! Did you try a backup with a disk image that has a max of more than 300GB? Seems like TM in SysPrefs wants 299.93GB for whatever reasons.
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1257071">
+				<ul class="ipsList_inline">
+					<li id="like_post_1257071" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1257071', { domLikeStripId: 'like_post_1257071', app: 'forums', type: 'pid', typeid: '1257071' }, parseInt('0') );
+</script>
+				
+								
+				
+					<!--signature.hidden.1257071-->
+				
+				
+				
+			
+				<ul id="postControlsNormal_1257071" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1257071);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1257071') )
+	{
+		$('multiq_1257071').show();
+	}
+	
+	if( $('toggle_post_1257071') )
+	{
+		$('toggle_post_1257071').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1257071] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1257095-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1257095">
+		<a id="entry1257095"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1257095" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1257095" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #9">
+					
+					#9
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #9">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="465544" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/465544-skabob11/" title="" id="anonymous_element_13"><span itemprop="name">skabob11</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-08T13:41:57+00:00">08 September 2009 - 01:41 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">skabob11</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/465544-skabob11/" title="View Profile: skabob11" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			7 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:02 +0000--><p class="citation">sunkid, on Sep 8 2009, 09:24 AM, said:<a class="snapback right" rel="citation" href="http://www.insanelymac.com/forum/index.php?app=forums&module=forums&section=findpost&pid=1257071"><img src="./InsanelyMacPost_files/snapback.png"></a></p><blockquote class="ipsBlockquote built" data-author="sunkid" data-cid="1257071" data-date="Sep 8 2009, 09:24 AM"><p>That is odd! Did you try a backup with a disk image that has a max of more than 300GB? Seems like TM in SysPrefs wants 299.93GB for whatever reasons.</p></blockquote><br>Well its even weirder because its doing it for everything.<br><br>Hard Drive: Server Size | Mounted AFP Size in 10.6<br><br>Storage: 395.76 GB | 424.95 GB<br>Misery: 69.75 GB | 74.89 GB<br>Clyde: 279.34 GB | 299.93 GB<br>Macintosh HD: 93.04 GB | 99.9 GB<br><br>Each drive, in 10.6, is increased by about 7% +/- 1gb. So I'm thinking this could be less of a Time Machine problem and an OS problem. Time Machine is correctly reflecting the size of the drive according to 10.6, but 10.6 is not showing the correct size of the hard drive. I don't know if this is whats messing up my backups or not. When I get home, I could try just plugging the hard drive into 10.6 and seeing if that shows the correct hard drive size and then it could be an issue with the AFP share.<br><br>So my point is, I think even if i get a hard drive bigger then 300 GB, 10.6 may still boost it up 7% like it's doing to all my other drives.
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1257095">
+				<ul class="ipsList_inline">
+					<li id="like_post_1257095" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1257095', { domLikeStripId: 'like_post_1257095', app: 'forums', type: 'pid', typeid: '1257095' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1257095" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1257095);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1257095') )
+	{
+		$('multiq_1257095').show();
+	}
+	
+	if( $('toggle_post_1257095') )
+	{
+		$('toggle_post_1257095').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1257095] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1257142-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1257142">
+		<a id="entry1257142"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1257142" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1257142" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #10">
+					
+					#10
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #10">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="304835" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="" id="anonymous_element_14"><span itemprop="name">sunkid</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-08T14:14:09+00:00">08 September 2009 - 02:14 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">sunkid</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="View Profile: sunkid" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			41 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:02 +0000--><p class="citation">skabob11, on Sep 8 2009, 06:41 AM, said:<a class="snapback right" rel="citation" href="http://www.insanelymac.com/forum/index.php?app=forums&module=forums&section=findpost&pid=1257095"><img src="./InsanelyMacPost_files/snapback.png"></a></p><blockquote class="ipsBlockquote built" data-author="skabob11" data-cid="1257095" data-date="Sep 8 2009, 06:41 AM"><p>Well its even weirder because its doing it for everything.<br><br>Hard Drive: Server Size | Mounted AFP Size in 10.6<br><br>Storage: 395.76 GB | 424.95 GB<br>Misery: 69.75 GB | 74.89 GB<br>Clyde: 279.34 GB | 299.93 GB<br>Macintosh HD: 93.04 GB | 99.9 GB<br><br>Each drive, in 10.6, is increased by about 7% +/- 1gb. So I'm thinking this could be less of a Time Machine problem and an OS problem. Time Machine is correctly reflecting the size of the drive according to 10.6, but 10.6 is not showing the correct size of the hard drive. I don't know if this is whats messing up my backups or not. When I get home, I could try just plugging the hard drive into 10.6 and seeing if that shows the correct hard drive size and then it could be an issue with the AFP share.<br><br>So my point is, I think even if i get a hard drive bigger then 300 GB, 10.6 may still boost it up 7% like it's doing to all my other drives.</p></blockquote><br>Snow Leopard <a href="http://support.apple.com/kb/TS2419" class="bbc_url" title="External link" rel="nofollow external">now reports HD size in base 10</a> and not in base 2 anymore. Thus, that 300GB drive you bought actually shows up as 300GB now and not as 279GB like before.
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1257142">
+				<ul class="ipsList_inline">
+					<li id="like_post_1257142" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1257142', { domLikeStripId: 'like_post_1257142', app: 'forums', type: 'pid', typeid: '1257142' }, parseInt('0') );
+</script>
+				
+								
+				
+					<!--signature.hidden.1257142-->
+				
+				
+				
+			
+				<ul id="postControlsNormal_1257142" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1257142);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1257142') )
+	{
+		$('multiq_1257142').show();
+	}
+	
+	if( $('toggle_post_1257142') )
+	{
+		$('toggle_post_1257142').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1257142] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1257193-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1257193">
+		<a id="entry1257193"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1257193" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1257193" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #11">
+					
+					#11
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #11">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="465544" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/465544-skabob11/" title="" id="anonymous_element_15"><span itemprop="name">skabob11</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-08T14:44:03+00:00">08 September 2009 - 02:44 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">skabob11</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/465544-skabob11/" title="View Profile: skabob11" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			7 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:02 +0000--><p class="citation">sunkid, on Sep 8 2009, 10:14 AM, said:<a class="snapback right" rel="citation" href="http://www.insanelymac.com/forum/index.php?app=forums&module=forums&section=findpost&pid=1257142"><img src="./InsanelyMacPost_files/snapback.png"></a></p><blockquote class="ipsBlockquote built" data-author="sunkid" data-cid="1257142" data-date="Sep 8 2009, 10:14 AM"><p>Snow Leopard <a href="http://support.apple.com/kb/TS2419" class="bbc_url" title="External link" rel="nofollow external">now reports HD size in base 10</a> and not in base 2 anymore. Thus, that 300GB drive you bought actually shows up as 300GB now and not as 279GB like before.</p></blockquote><br>Ok well that explains that. <br><br>I don't have a chance to play with this right now. If I find anything later I will post it here but I'm not sure if I will get anywhere.<br><br>Thanks for the help!
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1257193">
+				<ul class="ipsList_inline">
+					<li id="like_post_1257193" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1257193', { domLikeStripId: 'like_post_1257193', app: 'forums', type: 'pid', typeid: '1257193' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1257193" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1257193);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1257193') )
+	{
+		$('multiq_1257193').show();
+	}
+	
+	if( $('toggle_post_1257193') )
+	{
+		$('toggle_post_1257193').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1257193] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1258195-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1258195">
+		<a id="entry1258195"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1258195" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1258195" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #12">
+					
+					#12
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #12">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="487154" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/487154-grandpoohbear/" title="" id="anonymous_element_16"><span itemprop="name">GrandPoohBear</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-09T05:07:54+00:00">09 September 2009 - 05:07 AM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">GrandPoohBear</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/487154-grandpoohbear/" title="View Profile: GrandPoohBear" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Just Joined
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			3 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:02 +0000-->I just installed Snow Leopard today and it broke the backup system I had running under 10.5.  I was using an old iMac as an AFP server, and then backed up through Time Machine over airport.  After having to do the tricky setup linked to in the original post, it worked fine.  Since installing 10.6, no luck!<br><br>I tried both the manual and automatic methods above.  Neither worked.  I even checked, and it seemed like the proper UUID was already in my existing sparsebundle!  From reading the console output, it seems like everything is going hunky dory until I hit this message about 15 seconds into the process:<br><pre class="prettyprint lang-auto linenums:0 prettyprinted"><span class="lit">9</span><span class="pun">/</span><span class="lit">8</span><span class="pun">/</span><span class="lit">09</span><span class="pln"> </span><span class="lit">10</span><span class="pun">:</span><span class="lit">00</span><span class="pun">:</span><span class="lit">26</span><span class="pln"> PM	diskimages</span><span class="pun">-</span><span class="pln">helper</span><span class="pun">[</span><span class="lit">1399</span><span class="pun">]</span><span class="pln">	terminating disk3 </span><span class="pun">-</span><span class="pln"> image </span><span class="kwd">is</span><span class="pln"> </span><span class="kwd">no</span><span class="pln"> longer available</span></pre>After that I get about 20 lines about the media not being present.  No surprise, it was unmounted some time ago.  Why????<br><br>Any ideas?<br>--Andy
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1258195">
+				<ul class="ipsList_inline">
+					<li id="like_post_1258195" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1258195', { domLikeStripId: 'like_post_1258195', app: 'forums', type: 'pid', typeid: '1258195' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1258195" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1258195);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1258195') )
+	{
+		$('multiq_1258195').show();
+	}
+	
+	if( $('toggle_post_1258195') )
+	{
+		$('toggle_post_1258195').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1258195] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1258836-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1258836">
+		<a id="entry1258836"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1258836" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1258836" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #13">
+					
+					#13
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #13">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="304835" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="" id="anonymous_element_17"><span itemprop="name">sunkid</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-09T16:14:30+00:00">09 September 2009 - 04:14 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">sunkid</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="View Profile: sunkid" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			41 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:03 +0000-->@GrandPoohBear: how large is the maximum size of your disk image and how big is your disk you are trying to backup?<br>
+<br>
+I think Snow Leopard may be enforcing a larger size of the backup disk images to avoid the problems Leopard ran into when backing up to AFP shares. <br>
+<br>
+Btw - if you are backing up to a Mac-based AFP share, I don't think you need to make any modifications yourself. Linux AFP shares, on the other hand, don't seem to be able to let TM create the disk image.
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1258836">
+				<ul class="ipsList_inline">
+					<li id="like_post_1258836" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1258836', { domLikeStripId: 'like_post_1258836', app: 'forums', type: 'pid', typeid: '1258836' }, parseInt('0') );
+</script>
+				
+								
+				
+					<!--signature.hidden.1258836-->
+				
+				
+				
+			
+				<ul id="postControlsNormal_1258836" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1258836);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1258836') )
+	{
+		$('multiq_1258836').show();
+	}
+	
+	if( $('toggle_post_1258836') )
+	{
+		$('toggle_post_1258836').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1258836] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1259601-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1259601">
+		<a id="entry1259601"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1259601" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1259601" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #14">
+					
+					#14
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #14">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="487154" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/487154-grandpoohbear/" title="" id="anonymous_element_18"><span itemprop="name">GrandPoohBear</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-10T05:21:13+00:00">10 September 2009 - 05:21 AM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">GrandPoohBear</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/487154-grandpoohbear/" title="View Profile: GrandPoohBear" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Just Joined
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			3 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:03 +0000-->@sunkid - I believe it's a 150 GB image for what SL is now reporting as a 137 GB drive (of which only 111 GB is used).  When I made the new images per the instructions, I set it at 220 GB, since the backup drive could support it, and still had no luck.  I don't have high hopes, but at this point I'd probably try anything!  Is there a way to increase the size of one of those images once you've created it?<br>
+<br>
+Thanks!
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1259601">
+				<ul class="ipsList_inline">
+					<li id="like_post_1259601" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1259601', { domLikeStripId: 'like_post_1259601', app: 'forums', type: 'pid', typeid: '1259601' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1259601" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1259601);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1259601') )
+	{
+		$('multiq_1259601').show();
+	}
+	
+	if( $('toggle_post_1259601') )
+	{
+		$('toggle_post_1259601').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1259601] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1259702-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1259702">
+		<a id="entry1259702"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1259702" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1259702" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #15">
+					
+					#15
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #15">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="487154" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/487154-grandpoohbear/" title="" id="anonymous_element_19"><span itemprop="name">GrandPoohBear</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-10T07:24:39+00:00">10 September 2009 - 07:24 AM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">GrandPoohBear</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/487154-grandpoohbear/" title="View Profile: GrandPoohBear" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Just Joined
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			3 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:03 +0000-->Tried resizing the sparsebundle: still bad.  <br><br>But, looks like a bunch of others are having the same problem:<br><br><a href="http://discussions.apple.com/thread.jspa?threadID=2135602" class="bbc_url" title="External link" rel="nofollow external">http://discussions.a...hreadID=2135602</a><br><br>... and it looks like they also have something of a workaround.  Mounting the drive via SMB seemed to do the trick!  Haven't finished a full backup yet, but certainly got further than ever before!<br><br>Thanks for the help!  Good luck to others!<br>--Andy
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1259702">
+				<ul class="ipsList_inline">
+					<li id="like_post_1259702" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1259702', { domLikeStripId: 'like_post_1259702', app: 'forums', type: 'pid', typeid: '1259702' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1259702" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1259702);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1259702') )
+	{
+		$('multiq_1259702').show();
+	}
+	
+	if( $('toggle_post_1259702') )
+	{
+		$('toggle_post_1259702').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1259702] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1262186-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1262186">
+		<a id="entry1262186"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1262186" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1262186" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #16">
+					
+					#16
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #16">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="487550" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/487550-cchi/" title="" id="anonymous_element_20"><span itemprop="name">cchi</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-11T19:29:05+00:00">11 September 2009 - 07:29 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">cchi</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/487550-cchi/" title="View Profile: cchi" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Just Joined
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			1 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:03 +0000-->Seems you also need a fully numeric SMB password!!  Apple needs to fix this.<br><br><p class="citation">GrandPoohBear, on Sep 10 2009, 07:24 AM, said:<a class="snapback right" rel="citation" href="http://www.insanelymac.com/forum/index.php?app=forums&module=forums&section=findpost&pid=1259702"><img src="./InsanelyMacPost_files/snapback.png"></a></p><blockquote class="ipsBlockquote built" data-author="GrandPoohBear" data-cid="1259702" data-date="Sep 10 2009, 07:24 AM"><p>Tried resizing the sparsebundle: still bad.  <br><br>But, looks like a bunch of others are having the same problem:<br><br><a href="http://discussions.apple.com/thread.jspa?threadID=2135602" class="bbc_url" title="External link" rel="nofollow external">http://discussions.a...hreadID=2135602</a><br><br>... and it looks like they also have something of a workaround.  Mounting the drive via SMB seemed to do the trick!  Haven't finished a full backup yet, but certainly got further than ever before!<br><br>Thanks for the help!  Good luck to others!<br>--Andy</p></blockquote>
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1262186">
+				<ul class="ipsList_inline">
+					<li id="like_post_1262186" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1262186', { domLikeStripId: 'like_post_1262186', app: 'forums', type: 'pid', typeid: '1262186' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1262186" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1262186);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1262186') )
+	{
+		$('multiq_1262186').show();
+	}
+	
+	if( $('toggle_post_1262186') )
+	{
+		$('toggle_post_1262186').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1262186] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1263886-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1263886">
+		<a id="entry1263886"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1263886" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1263886" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #17">
+					
+					#17
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #17">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="489669" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/489669-glyphon/" title="" id="anonymous_element_21"><span itemprop="name">glyphon</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-13T04:33:43+00:00">13 September 2009 - 04:33 AM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">glyphon</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/489669-glyphon/" title="View Profile: glyphon" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Just Joined
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			1 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:03 +0000--><p class="citation">skabob11, on Sep 8 2009, 08:19 AM, said:<a class="snapback right" rel="citation" href="http://www.insanelymac.com/forum/index.php?app=forums&module=forums&section=findpost&pid=1257067"><img src="./InsanelyMacPost_files/snapback.png"></a></p><blockquote class="ipsBlockquote built" data-author="skabob11" data-cid="1257067" data-date="Sep 8 2009, 08:19 AM"><p>afp://admin@donald.selfip.org/Clyde is my home server. Clyde is the name of the hard drive hooked up to the server. When backupd refers to the drive on line 4-6 it calls it Clyde-1. Not sure why. I can erase, partition this disk, whatever if there are any suggestions</p></blockquote><br>i had noticed the same thing when looking through my logs. for networked drives, TM seems to want to create the sparcebundle on a non-existant duplicate of the mounted drive. i guess that's a bug...<br><br>regardless, adding the plist to the sparcebundle did the trick and TM is happily running. thanks sunkid!
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1263886">
+				<ul class="ipsList_inline">
+					<li id="like_post_1263886" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1263886', { domLikeStripId: 'like_post_1263886', app: 'forums', type: 'pid', typeid: '1263886' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1263886" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1263886);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1263886') )
+	{
+		$('multiq_1263886').show();
+	}
+	
+	if( $('toggle_post_1263886') )
+	{
+		$('toggle_post_1263886').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1263886] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1264448-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1264448">
+		<a id="entry1264448"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1264448" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1264448" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #18">
+					
+					#18
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #18">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="465544" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/465544-skabob11/" title="" id="anonymous_element_22"><span itemprop="name">skabob11</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-13T15:16:36+00:00">13 September 2009 - 03:16 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">skabob11</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/465544-skabob11/" title="View Profile: skabob11" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			7 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:03 +0000--><p class="citation">glyphon, on Sep 13 2009, 12:33 AM, said:<a class="snapback right" rel="citation" href="http://www.insanelymac.com/forum/index.php?app=forums&module=forums&section=findpost&pid=1263886"><img src="./InsanelyMacPost_files/snapback.png"></a></p><blockquote class="ipsBlockquote built" data-author="glyphon" data-cid="1263886" data-date="Sep 13 2009, 12:33 AM"><p>i had noticed the same thing when looking through my logs. for networked drives, TM seems to want to create the sparcebundle on a non-existant duplicate of the mounted drive. i guess that's a bug...<br><br>regardless, adding the plist to the sparcebundle did the trick and TM is happily running. thanks sunkid!</p></blockquote><br>@Glyphon, what system are you using to connect to the hard drive? My server is using Tiger still and I'm curious if that could have anything to do it. I know snow leopard updated the AFP protocol version.
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1264448">
+				<ul class="ipsList_inline">
+					<li id="like_post_1264448" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1264448', { domLikeStripId: 'like_post_1264448', app: 'forums', type: 'pid', typeid: '1264448' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1264448" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1264448);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1264448') )
+	{
+		$('multiq_1264448').show();
+	}
+	
+	if( $('toggle_post_1264448') )
+	{
+		$('toggle_post_1264448').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1264448] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1264489-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1264489">
+		<a id="entry1264489"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1264489" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1264489" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #19">
+					
+					#19
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #19">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="304835" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="" id="anonymous_element_23"><span itemprop="name">sunkid</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-13T15:56:18+00:00">13 September 2009 - 03:56 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">sunkid</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/304835-sunkid/" title="View Profile: sunkid" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			41 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:03 +0000-->I also get the second, shadow-mount of my AFP share whenever Time Machine runs. The second mount has root-only permissions and I think this is now part of the normal protocol.<br><br>I am also not able to get this to work on a Tiger-based system:<br><br><pre class="prettyprint lang-auto linenums:0 prettyprinted"><span class="typ">Sep</span><span class="pln"> </span><span class="lit">13</span><span class="pln"> </span><span class="lit">08</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">10</span><span class="pln"> hackintosh com</span><span class="pun">.</span><span class="pln">apple</span><span class="pun">.</span><span class="pln">backupd</span><span class="pun">[</span><span class="lit">3617</span><span class="pun">]:</span><span class="pln"> </span><span class="typ">Creating</span><span class="pln"> disk image </span><span class="pun">/</span><span class="typ">Volumes</span><span class="pun">/</span><span class="typ">Tiger</span><span class="pun">-</span><span class="lit">2</span><span class="pun">/</span><span class="pln">tarpo</span><span class="pun">.</span><span class="pln">sparsebundle
+</span><span class="typ">Sep</span><span class="pln"> </span><span class="lit">13</span><span class="pln"> </span><span class="lit">08</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">23</span><span class="pln"> hackintosh com</span><span class="pun">.</span><span class="pln">apple</span><span class="pun">.</span><span class="pln">backupd</span><span class="pun">[</span><span class="lit">3617</span><span class="pun">]:</span><span class="pln"> </span><span class="typ">Error</span><span class="pln"> </span><span class="lit">118</span><span class="pln"> creating backup disk image
+</span><span class="typ">Sep</span><span class="pln"> </span><span class="lit">13</span><span class="pln"> </span><span class="lit">08</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">23</span><span class="pln"> hackintosh com</span><span class="pun">.</span><span class="pln">apple</span><span class="pun">.</span><span class="pln">backupd</span><span class="pun">[</span><span class="lit">3617</span><span class="pun">]:</span><span class="pln"> </span><span class="typ">Failed</span><span class="pln"> to create disk image 
+</span><span class="typ">Sep</span><span class="pln"> </span><span class="lit">13</span><span class="pln"> </span><span class="lit">08</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">28</span><span class="pln"> hackintosh com</span><span class="pun">.</span><span class="pln">apple</span><span class="pun">.</span><span class="pln">backupd</span><span class="pun">[</span><span class="lit">3617</span><span class="pun">]:</span><span class="pln"> </span><span class="typ">Backup</span><span class="pln"> failed </span><span class="kwd">with</span><span class="pln"> error</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20</span><span class="pln">
+</span><span class="typ">Sep</span><span class="pln"> </span><span class="lit">13</span><span class="pln"> </span><span class="lit">08</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">38</span><span class="pln"> hackintosh com</span><span class="pun">.</span><span class="pln">apple</span><span class="pun">.</span><span class="pln">backupd</span><span class="pun">[</span><span class="lit">3617</span><span class="pun">]:</span><span class="pln"> </span><span class="typ">Ejected</span><span class="pln"> </span><span class="typ">Time</span><span class="pln"> </span><span class="typ">Machine</span><span class="pln"> network volume</span><span class="pun">.</span></pre><br>When I try to use an image created by my script. I get the same unmounting issue as y'all <span rel="lightbox"><img class="bbc_img" src="./InsanelyMacPost_files/sad.png" alt=";)"></span>
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1264489">
+				<ul class="ipsList_inline">
+					<li id="like_post_1264489" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1264489', { domLikeStripId: 'like_post_1264489', app: 'forums', type: 'pid', typeid: '1264489' }, parseInt('0') );
+</script>
+				
+								
+				
+					<!--signature.hidden.1264489-->
+				
+				
+				
+			
+				<ul id="postControlsNormal_1264489" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1264489);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1264489') )
+	{
+		$('multiq_1264489').show();
+	}
+	
+	if( $('toggle_post_1264489') )
+	{
+		$('toggle_post_1264489').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1264489] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+
+				<!--post:1264853-->
+
+<div class="post_block hentry clear clearfix  " id="post_id_1264853">
+		<a id="entry1264853"></a>
+		
+	
+		
+		<div class="post_wrap">
+			
+				<h3>
+			
+				<span class="post_id right ipsType_small desc blend_links">
+					
+						<a itemprop="replyToUrl" data-entry-pid="1264853" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#entry1264853" rel="bookmark" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #20">
+					
+					#20
+					<img src="./InsanelyMacPost_files/icon_share.png" class="small" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share: post #20">
+					</a>
+				</span>
+				
+				<div class="post_username">
+					<img src="./InsanelyMacPost_files/post_offline.png" alt="" class="post_online" data-tooltip="Offline">
+					
+						<span itemprop="creator name" class="author vcard"><a hovercard-ref="member" hovercard-id="465544" data-ipb="noparse" class="url fn name  ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/465544-skabob11/" title="" id="anonymous_element_24"><span itemprop="name">skabob11</span></a></span>
+					
+				</div>
+				<div class="post_date">
+					Posted <abbr class="published" itemprop="commentTime" title="2009-09-13T20:48:17+00:00">13 September 2009 - 08:48 PM</abbr>
+
+				</div>
+				
+			</h3>
+			<div class="author_info">
+				<div itemscope="" itemtype="http://schema.org/Person" class="user_details">
+	<span class="hide" itemprop="name">skabob11</span>
+	<ul class="basic_info">
+		
+			<p class="desc member_title">InsanelyMac Protégé</p>
+		
+		<li class="avatar">
+				
+				<a itemprop="url" href="http://www.insanelymac.com/forum/user/465544-skabob11/" title="View Profile: skabob11" class="ipsUserPhotoLink">
+				
+				
+					<img itemprop="image" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" onload="lzld(this)" onerror="lzld(this)" data-src="http://www.insanelymac.com/forum/public/style_images/insanely_mac/profile/default_large.png" class="ipsUserPhoto ipsUserPhoto_large gif-delayer gif-delayer-loaded">
+				
+				
+				</a>
+				
+			</li>
+		<li class="group_title">
+			Members
+		</li>
+		<li class="group_icon">
+			
+				<img src="./InsanelyMacPost_files/bullet_black.png" alt="Pip">
+			
+			</li>
+		
+		<li class="post_count desc lighter">
+			7 posts
+		</li>
+		
+		
+	</ul>
+	
+	
+		<ul class="custom_fields">
+			
+				
+					
+				
+
+					
+				
+
+					
+				
+			
+		</ul>
+	
+</div>
+			</div>
+			<div class="post_body">
+				
+				
+				<div itemprop="commentText" class="post entry-content ">
+					
+					<!--cached-Tue, 15 Apr 2014 16:43:04 +0000--><p class="citation">sunkid, on Sep 13 2009, 11:56 AM, said:<a class="snapback right" rel="citation" href="http://www.insanelymac.com/forum/index.php?app=forums&module=forums&section=findpost&pid=1264489"><img src="./InsanelyMacPost_files/snapback.png"></a></p><blockquote class="ipsBlockquote built" data-author="sunkid" data-cid="1264489" data-date="Sep 13 2009, 11:56 AM"><p>I also get the second, shadow-mount of my AFP share whenever Time Machine runs. The second mount has root-only permissions and I think this is now part of the normal protocol.<br><br>I am also not able to get this to work on a Tiger-based system:<br><br></p><pre class="prettyprint lang-auto linenums:0 prettyprinted"><span class="typ">Sep</span><span class="pln"> </span><span class="lit">13</span><span class="pln"> </span><span class="lit">08</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">10</span><span class="pln"> hackintosh com</span><span class="pun">.</span><span class="pln">apple</span><span class="pun">.</span><span class="pln">backupd</span><span class="pun">[</span><span class="lit">3617</span><span class="pun">]:</span><span class="pln"> </span><span class="typ">Creating</span><span class="pln"> disk image </span><span class="pun">/</span><span class="typ">Volumes</span><span class="pun">/</span><span class="typ">Tiger</span><span class="pun">-</span><span class="lit">2</span><span class="pun">/</span><span class="pln">tarpo</span><span class="pun">.</span><span class="pln">sparsebundle
+</span><span class="typ">Sep</span><span class="pln"> </span><span class="lit">13</span><span class="pln"> </span><span class="lit">08</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">23</span><span class="pln"> hackintosh com</span><span class="pun">.</span><span class="pln">apple</span><span class="pun">.</span><span class="pln">backupd</span><span class="pun">[</span><span class="lit">3617</span><span class="pun">]:</span><span class="pln"> </span><span class="typ">Error</span><span class="pln"> </span><span class="lit">118</span><span class="pln"> creating backup disk image
+</span><span class="typ">Sep</span><span class="pln"> </span><span class="lit">13</span><span class="pln"> </span><span class="lit">08</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">23</span><span class="pln"> hackintosh com</span><span class="pun">.</span><span class="pln">apple</span><span class="pun">.</span><span class="pln">backupd</span><span class="pun">[</span><span class="lit">3617</span><span class="pun">]:</span><span class="pln"> </span><span class="typ">Failed</span><span class="pln"> to create disk image 
+</span><span class="typ">Sep</span><span class="pln"> </span><span class="lit">13</span><span class="pln"> </span><span class="lit">08</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">28</span><span class="pln"> hackintosh com</span><span class="pun">.</span><span class="pln">apple</span><span class="pun">.</span><span class="pln">backupd</span><span class="pun">[</span><span class="lit">3617</span><span class="pun">]:</span><span class="pln"> </span><span class="typ">Backup</span><span class="pln"> failed </span><span class="kwd">with</span><span class="pln"> error</span><span class="pun">:</span><span class="pln"> </span><span class="lit">20</span><span class="pln">
+</span><span class="typ">Sep</span><span class="pln"> </span><span class="lit">13</span><span class="pln"> </span><span class="lit">08</span><span class="pun">:</span><span class="lit">52</span><span class="pun">:</span><span class="lit">38</span><span class="pln"> hackintosh com</span><span class="pun">.</span><span class="pln">apple</span><span class="pun">.</span><span class="pln">backupd</span><span class="pun">[</span><span class="lit">3617</span><span class="pun">]:</span><span class="pln"> </span><span class="typ">Ejected</span><span class="pln"> </span><span class="typ">Time</span><span class="pln"> </span><span class="typ">Machine</span><span class="pln"> network volume</span><span class="pun">.</span></pre><br>When I try to use an image created by my script. I get the same unmounting issue as y'all <span rel="lightbox"><img class="bbc_img" src="./InsanelyMacPost_files/sad.png" alt=":wacko:"></span><p></p></blockquote><br>I'm going to try upgrading the server to Leopard and see if that makes a difference.
+					
+					<br>
+					
+				</div>
+				
+				
+				<div class="ipsLikeBar right clearfix" id="rep_post_1264853">
+				<ul class="ipsList_inline">
+					<li id="like_post_1264853" class="ipsLikeBar_info" style="display:none">
+							
+						</li>
+					
+				</ul>
+			</div>
+<script type="text/javascript">
+	ipb.global.registerReputation( 'rep_post_1264853', { domLikeStripId: 'like_post_1264853', app: 'forums', type: 'pid', typeid: '1264853' }, parseInt('0') );
+</script>
+				
+								
+				
+				
+				
+			
+				<ul id="postControlsNormal_1264853" class="post_controls clear clearfix">
+					<li class="top hide"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#ipboard_body" class="top" title="Back to top">Back to top</a></li>
+					
+					
+					
+					
+					
+					
+				</ul>
+				
+			</div>
+		</div>
+	</div>
+<div class="postBottom"></div>
+		
+		<hr>
+		
+		
+<script type="text/javascript">
+var pid = parseInt(1264853);
+if ( pid > ipb.topic.topPid ){
+	ipb.topic.topPid = pid;
+}
+
+	// Show multiquote for JS browsers
+	if ( $('multiq_1264853') )
+	{
+		$('multiq_1264853').show();
+	}
+	
+	if( $('toggle_post_1264853') )
+	{
+		$('toggle_post_1264853').show();
+	}
+	
+	// Add perm data
+	ipb.topic.deletePerms[1264853] = { 'canDelete' : 0, 'canSoftDelete' : 0 };
+
+</script>
+			
+		</div>
+	</div>
+
+</div>
+<div class="box_end"></div></div>
+<hr>
+<div class="topic_controls clear ipsPad_top_bottom_half">
+	
+		<div class="left"><div class="pagination clearfix left ">
+		<ul class="ipsList_inline back left">
+			
+			
+		</ul>
+		<ul class="ipsList_inline left pages">
+			<li class="pagejump clickable pj0866697001" id="anonymous_element_2">
+					<a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#">Page 1 of 9 <!--<img src='http://www.insanelymac.com/forum/public/style_images/insanely_mac/dropdown.png' alt='+' />--></a>
+					<script type="text/javascript">
+						ipb.global.registerPageJump( '0866697001', { url: "http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/", stKey: 'st', perPage: 20, totalPages: 9, anchor: '' } );
+					</script>
+				</li>
+			
+				
+					
+						<li class="page active">1</li>
+					
+				
+
+					<li class="page">
+							<a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/page-2" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share - Page 2">2</a>
+						</li>
+				
+
+					<li class="page">
+							<a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/page-3" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share - Page 3">3</a>
+						</li>
+				
+			
+		</ul>
+		<ul class="ipsList_inline forward left">
+			<li class="next"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/page-2" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share - Next page" rel="next">Next</a></li>
+			<li class="last"><a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/page-9" title="[Guide] 10.6 (Snow Leopard) Time Machine backup to network share - Go to last page" rel="last">»</a></li>
+		</ul>
+	</div></div>
+	
+	<div class="ipsPad_top_slimmer right">
+		
+		<a href="http://www.insanelymac.com/forum/forum/178-osx86-106-snow-leopard/" class="ipsType_small desc">Back to OSx86 10.6 (Snow Leopard)</a>
+		
+	</div>
+</div>
+
+<!-- Close topic -->
+<!-- BOTTOM BUTTONS -->
+
+	<br>
+	<div class="clear clearfix left">
+		
+
+	<ul class="topic_share left shareButtons ipsList_inline">
+	
+		<li><a href="http://www.insanelymac.com/forum/index.php?sharelink=twitter;aHR0cDovL3d3dy5pbnNhbmVseW1hYy5jb20vZm9ydW0vdG9waWMvMTg0NDYyLWd1aWRlLTEwNi1zbm93LWxlb3BhcmQtdGltZS1tYWNoaW5lLWJhY2t1cC10by1uZXR3b3JrLXNoYXJlLw,,;W0d1aWRlXSAxMC42IChTbm93IExlb3BhcmQpIFRpbWUgTWFjaGluZSBiYWNrdXAgdG8gbmV0d29yayBzaGFyZQ,," rel="nofollow" target="_blank" title="Share this link via Twitter" class="_slink" id="slink_twitter"><img src="./InsanelyMacPost_files/twitter(1).png"></a></li>
+	
+
+		
+				<li class="fbLike"><div class="fb-like fb_iframe_widget" data-href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/" data-send="false" data-layout="button_count" data-width="150" data-show-faces="false" data-action="like" fb-xfbml-state="rendered" fb-iframe-plugin-query="action=like&amp;app_id=198516133569018&amp;href=http%3A%2F%2Fwww.insanelymac.com%2Fforum%2Ftopic%2F184462-guide-106-snow-leopard-time-machine-backup-to-network-share%2F&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;send=false&amp;show_faces=false&amp;width=150"><span style="vertical-align: bottom; width: 76px; height: 20px;"><iframe name="f24680d0b8" width="150px" height="1000px" frameborder="0" allowtransparency="true" scrolling="no" title="fb:like Facebook Social Plugin" src="./InsanelyMacPost_files/like.html" class="" style="border: none; visibility: visible; width: 76px; height: 20px;"></iframe></span></div><div id="fb-root"></div></li>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=198516133569018";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+			
+	
+
+		
+				<script type="text/javascript" src="./InsanelyMacPost_files/plusone.js" gapi_processed="true">
+	
+		{lang: 'en-GB'}
+	
+</script>
+<li><div class="googlePlusOne"><div id="___plusone_1" style="text-indent: 0px; margin: 0px; padding: 0px; background-color: transparent; border-style: none; float: none; line-height: normal; font-size: 1px; vertical-align: baseline; display: inline-block; width: 24px; height: 15px; background-position: initial initial; background-repeat: initial initial;"><iframe frameborder="0" hspace="0" marginheight="0" marginwidth="0" scrolling="no" style="position: static; top: 0px; width: 24px; margin: 0px; border-style: none; left: 0px; visibility: visible; height: 15px;" tabindex="0" vspace="0" width="100%" id="I1_1397581323564" name="I1_1397581323564" src="./InsanelyMacPost_files/fastbutton.html" data-gapiattached="true" title="+1"></iframe></div></div></li>
+			
+	
+
+		<li><a href="http://www.insanelymac.com/forum/index.php?sharelink=digg;aHR0cDovL3d3dy5pbnNhbmVseW1hYy5jb20vZm9ydW0vdG9waWMvMTg0NDYyLWd1aWRlLTEwNi1zbm93LWxlb3BhcmQtdGltZS1tYWNoaW5lLWJhY2t1cC10by1uZXR3b3JrLXNoYXJlLw,,;W0d1aWRlXSAxMC42IChTbm93IExlb3BhcmQpIFRpbWUgTWFjaGluZSBiYWNrdXAgdG8gbmV0d29yayBzaGFyZQ,," rel="nofollow" target="_blank" title="Share this link via Digg" class="_slink" id="slink_digg"><img src="./InsanelyMacPost_files/digg.png"></a></li>
+	
+
+		<li><a href="http://www.insanelymac.com/forum/index.php?sharelink=delicious;aHR0cDovL3d3dy5pbnNhbmVseW1hYy5jb20vZm9ydW0vdG9waWMvMTg0NDYyLWd1aWRlLTEwNi1zbm93LWxlb3BhcmQtdGltZS1tYWNoaW5lLWJhY2t1cC10by1uZXR3b3JrLXNoYXJlLw,,;W0d1aWRlXSAxMC42IChTbm93IExlb3BhcmQpIFRpbWUgTWFjaGluZSBiYWNrdXAgdG8gbmV0d29yayBzaGFyZQ,," rel="nofollow" target="_blank" title="Share this link via Del.icio.us" class="_slink" id="slink_delicious"><img src="./InsanelyMacPost_files/delicious.png"></a></li>
+	
+
+		<li><a href="http://www.insanelymac.com/forum/index.php?sharelink=reddit;aHR0cDovL3d3dy5pbnNhbmVseW1hYy5jb20vZm9ydW0vdG9waWMvMTg0NDYyLWd1aWRlLTEwNi1zbm93LWxlb3BhcmQtdGltZS1tYWNoaW5lLWJhY2t1cC10by1uZXR3b3JrLXNoYXJlLw,,;W0d1aWRlXSAxMC42IChTbm93IExlb3BhcmQpIFRpbWUgTWFjaGluZSBiYWNrdXAgdG8gbmV0d29yayBzaGFyZQ,," rel="nofollow" target="_blank" title="Share this link via Reddit" class="_slink" id="slink_reddit"><img src="./InsanelyMacPost_files/reddit.png"></a></li>
+	
+
+		<li><a href="http://www.insanelymac.com/forum/index.php?sharelink=stumble;aHR0cDovL3d3dy5pbnNhbmVseW1hYy5jb20vZm9ydW0vdG9waWMvMTg0NDYyLWd1aWRlLTEwNi1zbm93LWxlb3BhcmQtdGltZS1tYWNoaW5lLWJhY2t1cC10by1uZXR3b3JrLXNoYXJlLw,,;W0d1aWRlXSAxMC42IChTbm93IExlb3BhcmQpIFRpbWUgTWFjaGluZSBiYWNrdXAgdG8gbmV0d29yayBzaGFyZQ,," rel="nofollow" target="_blank" title="Share this link via StumbleUpon" class="_slink" id="slink_stumble"><img src="./InsanelyMacPost_files/stumble.png"></a></li>
+	
+
+		<li><a href="http://www.insanelymac.com/forum/index.php?sharelink=email;aHR0cDovL3d3dy5pbnNhbmVseW1hYy5jb20vZm9ydW0vdG9waWMvMTg0NDYyLWd1aWRlLTEwNi1zbm93LWxlb3BhcmQtdGltZS1tYWNoaW5lLWJhY2t1cC10by1uZXR3b3JrLXNoYXJlLw,,;W0d1aWRlXSAxMC42IChTbm93IExlb3BhcmQpIFRpbWUgTWFjaGluZSBiYWNrdXAgdG8gbmV0d29yayBzaGFyZQ,," rel="nofollow" target="_blank" title="Share this link via Email" class="_slink" id="slink_email"><img src="./InsanelyMacPost_files/email.png"></a></li>
+	
+
+		<li><a href="http://www.insanelymac.com/forum/index.php?sharelink=print;aHR0cDovL3d3dy5pbnNhbmVseW1hYy5jb20vZm9ydW0vdG9waWMvMTg0NDYyLWd1aWRlLTEwNi1zbm93LWxlb3BhcmQtdGltZS1tYWNoaW5lLWJhY2t1cC10by1uZXR3b3JrLXNoYXJlLw,,;W0d1aWRlXSAxMC42IChTbm93IExlb3BhcmQpIFRpbWUgTWFjaGluZSBiYWNrdXAgdG8gbmV0d29yayBzaGFyZQ,," rel="nofollow" target="_blank" title="Print" class="_slink" id="slink_print"><img src="./InsanelyMacPost_files/print.png"></a></li>
+	
+
+		<li><a href="http://www.insanelymac.com/forum/index.php?sharelink=download;aHR0cDovL3d3dy5pbnNhbmVseW1hYy5jb20vZm9ydW0vdG9waWMvMTg0NDYyLWd1aWRlLTEwNi1zbm93LWxlb3BhcmQtdGltZS1tYWNoaW5lLWJhY2t1cC10by1uZXR3b3JrLXNoYXJlLw,,;W0d1aWRlXSAxMC42IChTbm93IExlb3BhcmQpIFRpbWUgTWFjaGluZSBiYWNrdXAgdG8gbmV0d29yayBzaGFyZQ,," rel="nofollow" target="_blank" title="Download" class="_slink" id="slink_download"><img src="./InsanelyMacPost_files/download.png"></a></li>
+	
+	</ul>
+	<script type="text/javascript">
+		ipb.sharelinks.url   = "http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/";
+		ipb.sharelinks.title = "[Guide] 10.6 (Snow Leopard) Time Machine backup to network share";
+		ipb.sharelinks.bname = "InsanelyMac Forum";
+	</script>
+
+	</div>
+	<br>
+
+<!-- SAME TAGGED -->
+
+<!-- BOTTOM AD -->
+<br>
+<div class="clear clearfix">
+	<!-- InsanelyMac_Forum_Low_728x90 -->
+	<div id="div-gpt-ad-1358550302649-0" style="width:728px; height:90px;">
+		<script type="text/javascript">
+			googletag.cmd.push(function() { googletag.display('div-gpt-ad-1358550302649-0'); });
+		</script>
+	</div>
+</div>
+<!-- ACTIVE USERS -->
+<div id="topic_stats" class="statistics clear clearfix">
+		<div id="topic_active_users" class="active_users">
+			<h4 class="statistics_head">2 user(s) are reading this topic</h4>
+			<p class="statistics_brief desc">1 members, 1 guests, 0 anonymous users</p>
+			
+				<br>
+				<ul class="ipsList_inline">
+					<a hovercard-ref="member" hovercard-id="1023690" data-ipb="noparse" class="url fn name   ___hover___member _hoversetup" href="http://www.insanelymac.com/forum/user/1023690-ojford/" title="" id="anonymous_element_25"><span itemprop="name">OJFord</span></a>
+				</ul>
+			
+		</div>
+	</div>
+
+
+	<script type="text/javascript" src="./InsanelyMacPost_files/prettify.js"></script>
+	<script type="text/javascript" src="./InsanelyMacPost_files/lang-sql.js"></script>
+	<!-- By default we load generic code, php, css, sql and xml/html; load others here if desired -->
+	<script type="text/javascript">
+	//<![CDATA[
+		Event.observe( window, 'load', function(e){ prettyPrint() });
+	//]]>
+	</script>
+<div id="multiQuoteInsert" style="display: none;" class="ipsFloatingAction">
+	<span class="ipsButton no_width" id="mqbutton">Reply to quoted posts</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#" id="multiQuoteClear" class="ipsType_smaller desc" title="Clear the posts you have selected with MultiQuote">Clear</a> &nbsp;&nbsp;&nbsp;
+</div>
+<form id="modform" method="post" action="http://www.insanelymac.com/forum/index.php?">
+	<input type="hidden" name="app" value="forums">
+	<input type="hidden" name="module" value="moderate">
+	<input type="hidden" name="section" value="moderate">
+	<input type="hidden" name="do" value="postchoice">
+	<input type="hidden" name="f" value="178">
+	<input type="hidden" name="t" value="184462">
+	<input type="hidden" name="auth_key" value="880ea6a14ea49e853634fbdc5015a024">
+	<input type="hidden" name="st" value="">
+	<input type="hidden" name="page" value="">
+	<input type="hidden" value="" name="selectedpidsJS" id="selectedpidsJS">
+	<input type="hidden" name="tact" id="tact" value="">
+</form>
+				
+				<ol class="breadcrumb bottom ipsList_inline left clearfix clear">
+											<li><a href="http://www.insanelymac.com/forum/">InsanelyMac Forum</a></li>
+							
+						
+							<li><span class="nav_sep">→</span> <a href="http://www.insanelymac.com/forum/forum/85-osx86-project/" title="Return to OSx86 Project"><span>OSx86 Project</span></a></li>
+							
+						
+
+							<li><span class="nav_sep">→</span> <a href="http://www.insanelymac.com/forum/forum/137-osx86-installation/" title="Return to OSx86 Installation"><span>OSx86 Installation</span></a></li>
+							
+						
+
+							<li><span class="nav_sep">→</span> <a href="http://www.insanelymac.com/forum/forum/178-osx86-106-snow-leopard/" title="Return to OSx86 10.6 (Snow Leopard)"><span>OSx86 10.6 (Snow Leopard)</span></a></li>
+							
+						
+
+					
+					
+				</ol>
+			</div>
+			<!-- ::: FOOTER (Change skin, language, mark as read, etc) ::: -->
+			<div id="footer_utilities" class="clearfix clear">
+				<a rel="nofollow" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#top" id="backtotop" title="Go to top"><img src="./InsanelyMacPost_files/clear.gif" alt="" class="gif-delayer gif-delayer-loaded"></a>
+				<ul class="ipsList_inline left">
+					<li>
+						<img src="./InsanelyMacPost_files/clear.gif" alt="RSS Feed" id="rss_feed" class="clickable gif-delayer gif-delayer-loaded"><ul id="rss_menu" class="ipbmenu_content" style="position: absolute; display: none; z-index: 9999;"><li style="z-index: 10000;"><a href="http://www.insanelymac.com/forum/rss/forums/1-insanelymac-latest-forum-threads/" title="InsanelyMac Latest Forum Threads" style="z-index: 10000;">InsanelyMac Latest Forum Threads</a></li>
+<li style="z-index: 10000;"><a href="http://www.insanelymac.com/forum/rss/forums/2-insanelymac-news/" title="InsanelyMac News" style="z-index: 10000;">InsanelyMac News</a></li>
+<li style="z-index: 10000;"><a href="http://www.insanelymac.com/forum/rss/downloads/" title="Last 10 Submissions RSS Feed" style="z-index: 10000;">Last 10 Submissions RSS Feed</a></li>
+<li style="z-index: 10000;"><a href="http://www.insanelymac.com/forum/rss/ccs/7c25-hardware/" title="OSx86 FAQ: Hardware" style="z-index: 10000;">OSx86 FAQ: Hardware</a></li>
+<li style="z-index: 10000;"><a href="http://www.insanelymac.com/forum/rss/ccs/7c26-installation/" title="OSx86 FAQ: Installation" style="z-index: 10000;">OSx86 FAQ: Installation</a></li>
+<li style="z-index: 10000;"><a href="http://www.insanelymac.com/forum/rss/ccs/7c30-os-x-general/" title="OSx86 FAQ: OS X General" style="z-index: 10000;">OSx86 FAQ: OS X General</a></li>
+<li style="z-index: 10000;"><a href="http://www.insanelymac.com/forum/rss/ccs/7c27-bootloaders/" title="OSx86 FAQ: Bootloaders" style="z-index: 10000;">OSx86 FAQ: Bootloaders</a></li>
+<li style="z-index: 10000;"><a href="http://www.insanelymac.com/forum/rss/ccs/7c28-kexts/" title="OSx86 FAQ: Kexts" style="z-index: 10000;">OSx86 FAQ: Kexts</a></li>
+<li style="z-index: 10000;"><a href="http://www.insanelymac.com/forum/rss/ccs/7c29-dsdt/" title="OSx86 FAQ: DSDT" style="z-index: 10000;">OSx86 FAQ: DSDT</a></li></ul>
+					</li>
+					
+							
+								<li>
+									<a rel="nofollow" id="new_skin" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#" title="Change Theme">Change Theme</a>
+									<ul id="new_skin_menucontent" class="ipbmenu_content with_checks" style="display: none; position: absolute; z-index: 9999;">
+										
+											<li style="z-index: 10000;">
+												<a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#" data-clicklaunch="changeSkin" data-skinid="1" style="z-index: 10000;">IP.Board</a>
+											</li>
+										
+
+											<li class="selected" style="z-index: 10000;">
+												<a href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#" data-clicklaunch="changeSkin" data-skinid="8" style="z-index: 10000;">InsanelyMac</a>
+											</li>
+										
+									</ul>
+								</li>
+							
+					
+					
+					<li>
+						<a href="http://www.insanelymac.com/forum/index.php?app=core&module=help" title="View help" rel="help" accesskey="6">Help</a>
+					</li>
+				</ul>
+				
+			</div>
+			
+			<div id="stats_div"></div>
+			
+				<script type="text/javascript" src="./InsanelyMacPost_files/lightbox.js"></script>
+<script type="text/javascript">
+//<![CDATA[
+	// Lightbox Configuration
+	LightboxOptions = Object.extend({
+	    fileLoadingImage:        'http://www.insanelymac.com/forum/public/style_images/insanely_mac/lightbox/loading.gif',
+	    fileBottomNavCloseImage: 'http://www.insanelymac.com/forum/public/style_images/insanely_mac/lightbox/closelabel.gif',
+	    overlayOpacity: 0.0,   // controls transparency of shadow overlay
+	    animate: true,         // toggles resizing animations
+	    resizeSpeed: 10,        // controls the speed of the image resizing animations (1=slowest and 10=fastest)
+	    borderSize: 10,         //if you adjust the padding in the CSS, you will need to update this variable
+		// When grouping images this is used to write: Image # of #.
+		// Change it for non-english localization
+		labelImage: "Image",
+		labelOf: "of"
+	}, window.LightboxOptions || {});
+/* Watch for a lightbox image and set up our downloadbutton watcher */
+document.observe('click', (function(event){
+    var target = event.findElement('a[rel*="lightbox"]') || event.findElement('area[rel*="lightbox"]') || event.findElement('span[rel*="lightbox"]');
+    if (target) {
+        event.stop();
+        gbl_addDownloadButton();
+    }
+}).bind(this));
+var _to    = '';
+var _last  = '';
+function gbl_addDownloadButton()
+{
+	if ( typeof( ipsLightbox.lightboxImage ) != 'undefined' && ipsLightbox.lightboxImage.src )
+	{
+		if ( _last != ipsLightbox.lightboxImage.src )
+		{
+			if ( ! $('gbl_d') )
+			{
+				$('bottomNav').insert( { top: "<div id='gbl_d' style='text-align:right;padding-bottom:4px;'></div>" } );
+			}
+			
+			$('gbl_d').update( "<a href='"+ ipsLightbox.lightboxImage.src + "' target='_blank'><img src='http://www.insanelymac.com/forum/public/style_images/insanely_mac/lightbox/download-icon.png' /></a>" );
+			
+			_last = ipsLightbox.lightboxImage.src;
+		}
+	}
+	
+	/* Check for init and then keep checking for new image */
+	_to = setTimeout( "gbl_addDownloadButton()", 1000 );
+}
+//]]>
+</script>
+			
+			<div id="inline_login_form" class="ipbfs_login" style="display: none">
+		<form action="http://www.insanelymac.com/forum/index.php?app=core&module=global&section=login&do=process" method="post" id="login">
+				<input type="hidden" name="auth_key" value="880ea6a14ea49e853634fbdc5015a024">
+				<input type="hidden" name="referer" value="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/">
+				<h3>Sign In</h3>
+				<div class="ipsBox_notice">
+						<ul class="ipsList_inline">
+							
+								<li><a href="http://www.insanelymac.com/forum/index.php?app=core&module=global&section=login&serviceClick=facebook" class="ipsButton_secondary"><img src="./InsanelyMacPost_files/facebook.png" alt="Facebook"> &nbsp; Use Facebook</a></li>
+							
+							
+								<li><a href="http://www.insanelymac.com/forum/index.php?app=core&module=global&section=login&serviceClick=twitter" class="ipsButton_secondary"><img src="./InsanelyMacPost_files/twitter.png" alt="Twitter"> &nbsp; Use Twitter</a></li>
+							
+							
+							
+						</ul>
+					</div>
+				<div class="ipbfs_login_row">
+					<div class="ipbfs_login_col">
+						<span class="right desc lighter blend_links">Need an account? <a href="http://www.insanelymac.com/forum/index.php?app=core&module=global&section=register" title="Register now!">Register now!</a></span>
+						<strong><label for="ips_username" class="ipsField_title">Username</label></strong>
+						<div class="ipsField_content">
+							<input id="ips_username" type="text" class="input_text ipbfs_login_input ipbfs_luser" name="ips_username" size="30" tabindex="1">
+						</div>
+					</div>
+					<div class="ipbfs_login_col">
+						<span class="right desc lighter blend_links"><a href="http://www.insanelymac.com/forum/index.php?app=core&module=global&section=lostpass" title="Retrieve password">I've forgotten my password</a></span>
+						<strong><label for="ips_password" class="ipsField_title">Forum Password</label></strong>
+						<div class="ipsField_content">
+							<input id="ips_password" type="password" class="input_text ipbfs_login_input ipbfs_lpassword" name="ips_password" size="30" tabindex="2"><br>	
+						</div>
+					</div>
+				</div>
+				<div class="clearfix">
+					<div class="ipbfs_login_col">
+						<input type="checkbox" id="inline_remember" checked="checked" name="rememberMe" value="1" class="input_check left" tabindex="3">
+						<div style="padding-left: 20px">
+							<label for="inline_remember">
+								<strong>Remember me</strong>
+								<span class="desc lighter" style="display: block; padding-top: 5px;">This is not recommended for shared computers</span>
+							</label>
+						</div>
+					</div>
+					
+						<div class="ipbfs_login_col">
+							<input type="checkbox" id="inline_invisible" name="anonymous" value="1" class="input_check left" tabindex="4">
+							<div style="padding-left: 20px">
+								<label for="inline_invisible">
+									<strong>Sign in anonymously</strong>
+									<span class="desc lighter" style="display: block; padding-top: 5px;">Don't add me to the active users list</span>
+								</label>
+							</div>
+						</div>
+					
+				</div>
+				<div class="ipsForm_submit ipsForm_center clear">
+					<input type="submit" class="input_submit" value="Sign In" tabindex="5">
+					
+				</div>
+			</form>
+	</div>
+		</div>
+		
+		
+		<div class="cctext">
+			© 2014 InsanelyMac&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="http://www.insanelymac.com/">News</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="http://www.insanelymac.com/forum/">Forum</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="http://www.insanelymac.com/forum/files/">Downloads</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="http://wiki.osx86project.org/wiki/index.php/Main_Page">OSx86 Wiki</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="http://www.mymacnetbook.com/">Mac Netbook</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="http://catn.com/" onclick="window.open(this.href); return false;">Web hosting by CatN</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="http://edgain.co.uk/" onclick="window.open(this.href); return false;">Designed by Ed Gain</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="http://www.insanelymac.com/forum/user/60336-rolodex/" onclick="window.open(this.href); return false;">Logo by irfan</a>&nbsp;&nbsp;|&nbsp;&nbsp;
+			<a href="http://www.insanelymac.com/privacy-policy" onclick="window.open(this.href); return false;">Privacy Policy</a>
+		</div>
+	</div>
+ 		<script type="text/javascript">
+			if( $('primary_nav') ){	ipb.global.activateMainMenu(); }
+		</script>
+		<script type="text/javascript">
+			(function() {
+				var im = document.createElement('script'); im.type = 'text/javascript'; im.async = true;
+				im.src = '/public/insanelymac.min.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(im, s);
+			})();
+		</script>
+		<script type="text/javascript">
+			(function(d,s,id){
+				var js,fjs=d.getElementsByTagName(s)[0];
+				if(d.getElementById(id)) return;
+				js=d.createElement(s);js.id=id;js.async=true;
+				js.src="//platform.twitter.com/widgets.js";
+				fjs.parentNode.insertBefore(js,fjs);
+			}(document,"script","twitter-wjs"));
+			(function() {
+				var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+				po.src = 'https://apis.google.com/js/plusone.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+			})();
+			(function(d, s, id) {
+				var js,fjs=d.getElementsByTagName(s)[0];
+				if (d.getElementById(id)) return;
+				js=d.createElement(s);js.id=id;js.async=true;
+				js.src="//connect.facebook.net/en_US/all.js#xfbml=1";
+				fjs.parentNode.insertBefore(js,fjs);
+			}(document,'script','facebook-jssdk'));
+		</script>
+		<script type="text/javascript" src="http://insanelymaccom.skimlinks.com/api/skimlinks.js"></script>
+		<script type="text/javascript">
+			var skimlinks_pub_id = '292X457';
+			skimlinks();
+		</script>
+		<script type="text/javascript"> 
+			(function() {
+				var nstrack = document.createElement("script"), el_nstrack = document.getElementsByTagName("script")[0]; nstrack.async = true;
+				nstrack.src = "http://track.netshelter.net/async/js/sites/insanelymac.com-async.js";
+				el_nstrack.parentNode.insertBefore(nstrack, el_nstrack);
+			})();
+		</script>
+		
+			<!-- Kontera ContentLink(TM);-->
+			<script type="text/javascript">
+				var dc_AdLinkColor = '#176BA1';
+				var dc_PublisherID = 141597;
+				var dc_flowMode = 4;
+			</script>
+			<script type="text/javascript" src="http://kona.kontera.com/javascript/lib/KonaLibInline.js"></script>
+			<!-- Kontera ContentLink(TM) -->
+		
+	
+<div id="pj_anonymous_element_1_wrap" class="ipbmenu_content pj0866697001" jumpid="0866697001" style="position: absolute; display: none; z-index: 9999;"><h3 class="bar" style="z-index: 10000;">Jump to page</h3><p class="ipsPad" style="z-index: 10000;"><input type="text" class="input_text" id="pj_anonymous_element_1_input" size="8" style="z-index: 10000;"> <input type="submit" value="Go" class="input_submit add_folder" id="pj_anonymous_element_1_submit" style="z-index: 10000;"></p></div><div id="pj_anonymous_element_2_wrap" class="ipbmenu_content pj0866697001" jumpid="0866697001" style="position: absolute; display: none; z-index: 9999;"><h3 class="bar" style="z-index: 10000;">Jump to page</h3><p class="ipsPad" style="z-index: 10000;"><input type="text" class="input_text" id="pj_anonymous_element_2_input" size="8" style="z-index: 10000;"> <input type="submit" value="Go" class="input_submit add_folder" id="pj_anonymous_element_2_submit" style="z-index: 10000;"></p></div></div><div id="lightbox" style="display: none;"><div id="outerImageContainer" style="width: 250px; height: 250px;"><div id="imageContainer"><img id="lightboxImage"><div id="hoverNav"><a id="prevLink" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#"></a><a id="nextLink" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#"></a></div><div id="loading"><a id="loadingLink" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#"><img src="./InsanelyMacPost_files/loading.gif" class="gif-delayer gif-delayer-loaded"></a></div></div></div><div id="imageDataContainer"><div id="imageData"><div id="imageDetails"><span id="caption"></span><span id="numberDisplay"></span></div><div id="bottomNav"><a id="bottomNavClose" href="http://www.insanelymac.com/forum/topic/184462-guide-106-snow-leopard-time-machine-backup-to-network-share/#"><img src="./InsanelyMacPost_files/closelabel.gif" class="gif-delayer gif-delayer-loaded"></a></div></div></div></div><iframe name="oauth2relay888907322" id="oauth2relay888907322" src="./InsanelyMacPost_files/postmessageRelay.html" tabindex="-1" style="width: 1px; height: 1px; position: absolute; top: -100px;"></iframe></body></html>

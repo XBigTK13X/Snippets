@@ -1,3 +1,8 @@
+#
+THIS SCRIPT IS NO LONGER MAINTAINED
+
+Followig a major infrastructure upgrade, all backups and restores are done through native utilities leveraging network shares.
+
 ##Purpose
 This python script wraps rsync and makes it easy to add backup targets.
 
